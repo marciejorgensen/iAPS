@@ -10,7 +10,7 @@ struct InfoText: Identifiable {
 extension PreferencesEditor {
     struct RootView: BaseView {
         let resolver: Resolver
-        @StateObject var state = StateModel()
+        @StateObject var state: StateModel
 
         private var formatter: NumberFormatter {
             let formatter = NumberFormatter()
@@ -19,6 +19,11 @@ extension PreferencesEditor {
         }
 
         @State private var infoButtonPressed: InfoText?
+
+        init(resolver: Resolver) {
+            self.resolver = resolver
+            _state = StateObject(wrappedValue: StateModel(resolver: resolver))
+        }
 
         var body: some View {
             Form {
@@ -60,6 +65,25 @@ extension PreferencesEditor {
                                         value: self.$state.sections[sectionIndex].fields[fieldIndex].decimalValue,
                                         formatter: formatter
                                     )
+                                case .glucose:
+                                    ZStack {
+                                        Button("", action: {
+                                            infoButtonPressed = InfoText(
+                                                description: field.infoText,
+                                                oref0Variable: field.displayName
+                                            )
+                                        })
+                                        Text(field.displayName)
+                                    }
+                                    BGTextField(
+                                        "0",
+                                        mgdlValue: self.$state.sections[sectionIndex].fields[fieldIndex].decimalValue,
+                                        units: Binding(
+                                            get: { self.state.unitsIndex == 0 ? .mgdL : .mmolL },
+                                            set: { _ in }
+                                        ),
+                                        isDisabled: false
+                                    )
                                 case .insulinCurve:
                                     Picker(
                                         selection: $state.sections[sectionIndex].fields[fieldIndex].insulinCurveValue,
@@ -82,7 +106,6 @@ extension PreferencesEditor {
                 Section {} footer: { Text("").padding(.bottom, 300) }
             }
             .dynamicTypeSize(...DynamicTypeSize.xxLarge)
-            .onAppear(perform: configureView)
             .navigationTitle("Preferences")
             .navigationBarTitleDisplayMode(.automatic)
             .navigationBarItems(

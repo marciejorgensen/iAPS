@@ -16,6 +16,15 @@
 /* Continue after added carbs without bolus */
 "Continue without bolus" = "Jatka ilman lisäannosta";
 
+/* History View */
+"No data." = "No data.";
+
+/* Bolus View */
+"No Predictions. Failed loop suggestion." = "No Predictions. Failed loop suggestion.";
+
+/* Bolus View */
+"New Glucose Missing" = "New Glucose Missing";
+
 /* Continue after added meal without bolus */
 "Save Meal without bolus" = "Tallenna ateria ilman bolusta";
 
@@ -157,6 +166,15 @@
 /* Add carbs header and button in Watch app. You can skip the last " " space. It's just for differentiation */
 "Add Carbs " = "Lisää hiilihydraatit ";
 
+/* Home View */
+"Override" = "Override";
+
+/* Home View Message if no pump is connected */
+"No Pump" = "No Pump";
+
+/* Home View Message if open loop is active */
+"Open" = "Open";
+
 /*  */
 "Amount Carbs" = "Hiilihydraattien määrä";
 
@@ -172,6 +190,21 @@
 /* */
 "Are you sure?" = "Oletko varma?";
 
+/* */
+"Clear Records" = "Clear Records";
+
+/* */
+"Delete CoreData database records" = "Delete CoreData database records";
+
+/* */
+"Delete NS records" = "Delete NS records";
+
+/* */
+"All records in " = "All records in ";
+
+/* */
+" will be deleted!" = " will be deleted!";
+
 /* Bottom target temp */
 "Bottom target" = "Alempi tavoite";
 
@@ -180,6 +213,9 @@
 
 /*  */
 "Cancel Temp Target" = "Peruuta väliaikainen tavoite";
+
+/*  */
+"Cancel Temporary Target" = "Cancel Temporary Target";
 
 /* Custom temp target */
 "Custom" = "Muokattu";
@@ -262,6 +298,9 @@
 /*  */
 "Autotune" = "Autotune";
 
+/* Debug option view Dynamic Variables */
+"Dynamic Variables" = "Dynamic Variables";
+
 /*  */
 "Basal profile" = "Perusinsuliiniprofiili";
 
@@ -297,6 +336,9 @@
 
 /*  */
 "Schedule" = "Aikataulu";
+
+/* */
+"(standard units / hour)" = "(standard units / hour)";
 
 /*  */
 "starts at" = "aloitusaika";
@@ -449,6 +491,9 @@ Enact a temp Basal or a temp target */
 /* Add Omnipod pump */
 "Add Omnipod" = "Add Omnipod";
 
+/* Add Dana-i/RS pump */
+"Add Dana-i/RS" = "Add Dana-i/RS";
+
 /* Add Simulator pump */
 "Add Simulator" = "Add Simulator";
 
@@ -476,6 +521,52 @@ Enact a temp Basal or a temp target */
 /* Max setting */
 "Max Bolus" = "Max Bolus";
 
+/* Insulin alert message */
+"Please verify that you have selected the correct insulin concentration before saving your settings.\n\nThe insulin vial or pen should indicate the concentration in units per milliliter (e.g., U100 indicates 100 units per milliliter, which is the standard concentration).\n\nAccurate selection is critical for proper dosing." = "Please verify that you have selected the correct insulin concentration before saving your settings.\n\nThe insulin vial or pen should indicate the concentration in units per milliliter (e.g., U100 indicates 100 units per milliliter, which is the standard concentration).\n\nAccurate selection is critical for proper dosing.";
+
+/* Insulin Concentration View */
+"Concentration" = "Concentration";
+
+/* Insulin Concentration View */
+"Insulin Concentration" = "Insulin Concentration";
+
+/* Insulin Concentration View */
+"Change Insulin" = "Change Insulin";
+
+/* Insulin Concentration View */
+"Insulin diluted to" = "Insulin diluted to";
+
+/* Insulin Concentration View */
+"standard concentration:" = "standard concentration:";
+
+/* Insulin Concentration View */
+"units per ml" = "units per ml";
+
+/* Insulin Concentration View */
+"Standard concentration (U 100)" = "Standard concentration (U 100)";
+
+/* Insulin Concentration View */
+"Insulin concentration increased to" = "Insulin concentration increased to";
+
+/* Insulin Concentration View */
+"Couldn't save to pump. Try again when pump isn't busy bolusing." = "Couldn't save to pump. Try again when pump isn't busy bolusing.";
+
+/* Insulin Concentration View */
+"Saved" = "Saved";
+
+/* Label inusulin concentration, units per ml */
+"U100" = "U100";
+
+/* Label inusulin concentration, units per ml */
+"U200" = "U200";
+
+/* Label inusulin concentration, units per ml */
+"U50" = "U50";
+
+/* Label inusulin concentration, units per ml */
+"U10" = "U10";
+/* Debug option, allow U50 and U10 (diluted insulin) */
+"Allow diluted insulin concentration settings" = "Allow diluted insulin concentration settings";
 /* Max setting */
 "Max Carbs" = "Max Carbs";
 
@@ -552,10 +643,16 @@ Enact a temp Basal or a temp target */
 "Display on Watch" = "Display on Watch";
 
 /* */
+"Display either Overrides or Temp Targets" = "Display either Overrides or Temp Targets";
+
+/* */
 "Garmin Watch" = "Garmin Watch";
 
 /* */
 "Add devices" = "Add devices";
+
+/* */
+"Profile Overrides Button / Temp Targets Button" = "Profile Overrides Button / Temp Targets Button";
 
 /* */
 "Glucose Target" = "Glucose Target";
@@ -568,6 +665,9 @@ Enact a temp Basal or a temp target */
 
 /* */
 "ISF" = "ISF";
+
+/* */
+"% Override" = "% Override";
 
 /* */
 "The app Garmin Connect must be installed to use for iAPS.\n Go to App Store to download it" = "The app Garmin Connect must be installed to use for iAPS.\n Go to App Store to download it";
@@ -641,8 +741,23 @@ Enact a temp Basal or a temp target */
 /* Treatments list */
 "Treatments" = "Treatments";
 
+/* Add Insulin */
+"Add Insulin" = "Add Insulin";
+
+/* Add Glucose */
+"Add Glucose" = "Add Glucose";
+
+/* New Glucose */
+"New Glucose" = "New Glucose";
+
 /* Hypo Treatment Preset */
 "Treatment" = "Treatment";
+
+/* Hypo Treatment Default Value */
+"Default  📉" = "Default  📉";
+
+/* Hypo Treatment Default Value */
+"None" = "Ei mitään";
 
 /* " min" in Treatments list */
 " min" = " min";
@@ -867,7 +982,10 @@ Enact a temp Basal or a temp target */
 "Sensor Info" = "Sensor Info";
 
 /* */
-"Sensor Age" = "Sensor Age";
+"Sensor Life-Span" = "Sensor Life-Span";
+
+/* */
+"When using %@ iAPS doesn't know the type of sensor used or the sensor life-span." = "When using %@ iAPS doesn't know the type of sensor used or the sensor life-span.";
 
 /* */
 "Sensor Age Left" = "Sensor Age Left";
@@ -915,7 +1033,7 @@ Enact a temp Basal or a temp target */
 "Delete CGM" = "Delete CGM";
 
 /* */
-"Are you sure you want to remove this cgm from loop?" = "Are you sure you want to remove this cgm from loop?";
+"Are you sure you want to remove this cgm from iAPS?" = "Are you sure you want to remove this cgm from iAPS?";
 
 /* */
 "There is no undo" = "There is no undo";
@@ -1058,6 +1176,25 @@ Enact a temp Basal or a temp target */
 /* Override Shortcut */
 "Activates an %@ Override Preset" = "Activates an %@ Override Preset";
 
+/* Suspend/Resume Shortcut */
+"Choose what to do with your pump" = "Choose what to do with your pump";
+
+/* Suspend/Resume Shortcut */
+"Are you sure you want to %@ your pump?" = "Are you sure you want to %@ your pump?";
+
+/* Suspend/Resume Shortcut */
+"Pump command" = "Pump command";
+/* Suspend/Resume Shortcut */
+"enacted in iAPS" = "enacted in iAPS";
+
+/* Temp Basal Shortcut */
+"Temp basal Amount in U/h" = "Temp basal Amount in U/h";
+
+/* */
+"Cancel Temp" = "Cancel Temp";
+
+
+
 /* */
 "Schedule " = "Schedule ";
 
@@ -1084,6 +1221,12 @@ Enact a temp Basal or a temp target */
 
 /* */
 "No Glucose Alarm active" = "No Glucose Alarm active";
+
+/* */
+"Ascending Glucose Alarm active" = "Ascending Glucose Alarm active";
+
+/* */
+"Descending Glucose Alarm active" = "Descending Glucose Alarm active";
 
 /* */
 "snoozing until %@" = "snoozing until %@";
@@ -1125,7 +1268,7 @@ Enact a temp Basal or a temp target */
 "Backfill options" = "Backfill options";
 
 /* */
-"Backfilling from trend is currently not well supported by Loop" = "Backfilling from trend is currently not well supported by Loop";
+"Backfilling from trend is currently not well supported by iAPS" = "Backfilling from trend is currently not well supported by iAPS";
 
 /* */
 "Backfill from history" = "Backfill from history";
@@ -1150,6 +1293,57 @@ Enact a temp Basal or a temp target */
 
 /* */
 "Carbs Required Threshold" = "Carbs Required Threshold";
+
+/* */
+"Carbs Required" = "Carbs Required";
+
+/* */
+"Sounds" = "Sounds";
+
+/* Sound for Hypo alert */
+"Hypoglycemia" = "Hypoglycemia";
+
+/* Sound for Hyper alert */
+"Hyperglycemia" = "Hyperglycemia";
+
+/* Sound for ascending glucose */
+"Rapidly Ascending" = "Rapidly Ascending";
+
+/* Sound for descending glucose */
+"Rapidly Descending" = "Rapidly Descending";
+
+/* Silent sound option */
+"Silent" = "Silent";
+
+/* Option for no sound */
+"Silent" = "Silent";
+
+/* Option for default notification sound */
+"Default" = "Default";
+
+/* The iOS default sound */
+"iOS default sound" = "iOS default sound";
+
+/* Alert for descending glucose */
+"RAPIDLY DESCENDING GLUCOSE!" = "RAPIDLY DESCENDING GLUCOSE!";
+
+/* Alert for ascending glucose */
+"RAPIDLY ASCENDING GLUCOSE!" = "RAPIDLY ASCENDING GLUCOSE!";
+
+/* Sound for bolus failure */
+"Bolus Failure" = "Bolus Failure";
+
+/* Sound for missing loops */
+"Missing Loops" = "Missing Loops";
+
+/* Alert for ascending glucose */
+"Ascending" = "Ascending";
+
+/* Alert for descending glucose */
+"Descending" = "Descending";
+
+/* Thresholds for Alerts */
+"Thresholds" = "Thresholds";
 
 /* */
 "Carbs required: %d g" = "Carbs required: %d g";
@@ -1187,7 +1381,358 @@ Enact a temp Basal or a temp target */
 /* Food Type / Meal Note */
 "Note" = "Note";
 
+"Servings" = "Servings";
+
+"Kilo Calories" = "Kilo Calories";
+
+"Meals" = "Meals";
+
+"Today's Meals" = "Today's Meals";
+
+// --------- AI ---------
 /* */
+
+"AI Image Analysis" = "AI Image Analysis";
+
+"Barcode" = "Barcode";
+
+"📝 Notes" = "📝 Notes";
+
+/* */
+"💉 Diabetes recommendations" = "💉 Diabetes recommendations";
+
+/* */
+"🍽️ Separate Foods" = "🍽️ Separate Foods";
+
+/* */
+"Add all" = "Add all";
+
+/* */
+"🧠 AI Food analysis" = "🧠 AI Food analysis";
+
+/* */
+"📊 Total nutritional values of the meal" = "📊 Total nutritional values of the meal";
+
+/* */
+"Confidence level:" = "Confidence level:";
+
+/* */
+"Notes: %@" = "Notes: %@";
+
+/* */
+"Visual Cues: %@" = "Visual Cues: %@";
+
+/* */
+"Preparation: %@" = "Preparation: %@";
+
+/* */
+"Preparation" = "Preparation";
+
+/* */
+"Multiplicator" = "Multiplicator";
+
+/* */
+"Accept quantity" = "Accept quantity";
+
+/* */
+"Enter desired quantity" = "Enter desired quantity";
+
+/* */
+"AI Food Search" = "AI Food Search";
+
+/* Title */
+"Food Search" = "Food Search";
+
+/* Food Search input */
+"Food Search..." = "Food Search...";
+
+/* */
+"Search Food Database" = "Search Food Database";
+
+"Models Used:" = "Models Used:";
+
+"Current Mode: %@" = "Current Mode: %@";
+
+"Analysis Mode" = "Analysis Mode";
+
+"This AI provider requires an API key. Please enter your API key in the settings below." = "This AI provider requires an API key. Please enter your API key in the settings below.";
+"API Key Required" = "API Key Required";
+
+"Food Search Settings" = "Food Search Settings";
+
+"AI nutritional estimates are approximations only. Always consult with your healthcare provider for medical decisions. Verify nutritional information whenever possible. Use at your own risk." = "AI nutritional estimates are approximations only. Always consult with your healthcare provider for medical decisions. Verify nutritional information whenever possible. Use at your own risk.";
+
+"Medical Disclaimer" = "Medical Disclaimer";
+
+"Google (Gemini API) → OpenAI (ChatGPT API) → Anthropic (Claude API)" = "Google (Gemini API) → OpenAI (ChatGPT API) → Anthropic (Claude API)";
+
+"**AI Image Analysis:**" = "**AI Image Analysis:**";
+
+"OpenFoodFacts" = "OpenFoodFacts";
+
+"**Barcode Scanning:**" = "**Barcode Scanning:**";
+
+"USDA FoodData Central → OpenFoodFacts" = "USDA FoodData Central → OpenFoodFacts";
+
+"**Text/Voice Search:**" = "**Text/Voice Search:**";
+"Search Type Recommendations" = "Search Type Recommendations";
+
+"• **USDA FoodData Central**: Free, official nutrition database. Superior nutrition data for non-packaged foods like fruits, vegetables, and meat." = "• **USDA FoodData Central**: Free, official nutrition database. Superior nutrition data for non-packaged foods like fruits, vegetables, and meat.";
+
+"• **OpenFoodFacts**: Free, open database with extensive barcode coverage and text search for packaged foods. Default for text and barcode searches." = "• **OpenFoodFacts**: Free, open database with extensive barcode coverage and text search for packaged foods. Default for text and barcode searches.";
+
+"• **OpenAI (ChatGPT API)**: Most accurate AI analysis using GPT-4 Vision. Requires API key (~$0.01 per image). Excellent at image analysis and natural language queries." = "• **OpenAI (ChatGPT API)**: Most accurate AI analysis using GPT-4 Vision. Requires API key (~$0.01 per image). Excellent at image analysis and natural language queries.";
+
+"• **Google (Gemini API)**: Free AI with generous limits (1500/day). Excellent food recognition using Google's Vision AI. Perfect balance of quality and cost." = "• **Google (Gemini API)**: Free AI with generous limits (1500/day). Excellent food recognition using Google's Vision AI. Perfect balance of quality and cost.";
+
+"• **Anthropic (Claude API)**: Advanced AI with detailed reasoning. Excellent at food analysis and portion estimation. Requires API key (~$0.25 per million tokens)." = "• **Anthropic (Claude API)**: Advanced AI with detailed reasoning. Excellent at food analysis and portion estimation. Requires API key (~$0.25 per million tokens).";
+
+"Available Search Providers:" = "Available Search Providers:";
+
+"Provider Information" = "Provider Information";
+
+"❌ If you select 'OpenFoodFacts' or 'USDA', camera analysis will use basic estimation instead of AI" = "❌ If you select 'OpenFoodFacts' or 'USDA', camera analysis will use basic estimation instead of AI";
+
+"✅ Select 'Anthropic (Claude API)', 'Google (Gemini API)', or 'OpenAI (ChatGPT API)' for AI Image Analysis to use your paid keys" = "✅ Select 'Anthropic (Claude API)', 'Google (Gemini API)', or 'OpenAI (ChatGPT API)' for AI Image Analysis to use your paid keys";
+
+"When you take a photo of food, the app uses the provider selected in 'AI Image Analysis' above." = "When you take a photo of food, the app uses the provider selected in 'AI Image Analysis' above.";
+
+"Camera Food Analysis" = "Camera Food Analysis";
+
+"To use your paid API keys, make sure to select the corresponding provider in 'AI Image Analysis' above. The provider you select for AI Image Analysis is what will be used when you take photos of food." = "To use your paid API keys, make sure to select the corresponding provider in 'AI Image Analysis' above. The provider you select for AI Image Analysis is what will be used when you take photos of food.";
+
+"Important: How to Use Your API Keys" = "Important: How to Use Your API Keys";
+
+"Break down this meal into individual components with complete macronutrient profiles (carbs, protein, fat, calories) per item and combined totals." = "Break down this meal into individual components with complete macronutrient profiles (carbs, protein, fat, calories) per item and combined totals.";
+
+"Identify all food items in this image with focus on carbohydrate content for diabetes management. Provide detailed carb counts for each component and total meal carbohydrates." = "Identify all food items in this image with focus on carbohydrate content for diabetes management. Provide detailed carb counts for each component and total meal carbohydrates.";
+
+"Diabetes Focus" = "Diabetes Focus";
+
+"Provide extremely detailed visual analysis of this food image. Describe every element you can see: food colors, textures, cooking methods (grilled marks, browning, steaming), plate type and size, utensils present, garnishes, sauces, cooking oils visible, food arrangement, and background elements. Use these visual details to estimate precise portion sizes and calculate accurate nutrition values for diabetes management." = "Provide extremely detailed visual analysis of this food image. Describe every element you can see: food colors, textures, cooking methods (grilled marks, browning, steaming), plate type and size, utensils present, garnishes, sauces, cooking oils visible, food arrangement, and background elements. Use these visual details to estimate precise portion sizes and calculate accurate nutrition values for diabetes management.";
+
+"Analyze this food image for diabetes management. Describe exactly what you see in detail: colors, textures, cooking methods, plate type, utensils, and food arrangement. Identify each food item with specific preparation details, estimate precise portion sizes using visual references, and provide carbohydrates, protein, fat, and calories for each component. Focus on accurate carbohydrate estimation for insulin dosing." = "Analyze this food image for diabetes management. Describe exactly what you see in detail: colors, textures, cooking methods, plate type, utensils, and food arrangement. Identify each food item with specific preparation details, estimate precise portion sizes using visual references, and provide carbohydrates, protein, fat, and calories for each component. Focus on accurate carbohydrate estimation for insulin dosing.";
+
+"AI Prompt for Enhanced Results" = "AI Prompt for Enhanced Results";
+
+"Enter your OpenAI API key" = "Enter your OpenAI API key";
+
+"ChatGPT (OpenAI) API Key" = "ChatGPT (OpenAI) API Key";
+
+"Get an API key from platform.openai.com. Customize the analysis prompt to get specific meal component breakdowns and nutrition totals. (~$0.01 per image)" = "Get an API key from platform.openai.com. Customize the analysis prompt to get specific meal component breakdowns and nutrition totals. (~$0.01 per image)";
+
+"OpenAI (ChatGPT API) Configuration" = "OpenAI (ChatGPT API) Configuration";
+
+"Macro Tracking" = "Macro Tracking";
+
+"Identify all food items in this image with focus on carbohydrate content for diabetes management. Provide detailed carb counts for each component and total meal carbohydrates." = "Identify all food items in this image with focus on carbohydrate content for diabetes management. Provide detailed carb counts for each component and total meal carbohydrates.";
+
+"Detailed Visual Analysis" = "Detailed Visual Analysis";
+
+"Enter your Google Gemini API key" = "Enter your Google Gemini API key";
+
+"Google Gemini API Key" = "Google Gemini API Key";
+
+"Get a free API key from ai.google.dev. Google Gemini provides excellent food recognition with generous free tier (1500 requests per day)." = "Get a free API key from ai.google.dev. Google Gemini provides excellent food recognition with generous free tier (1500 requests per day).";
+
+"Google (Gemini API) Configuration" = "Google (Gemini API) Configuration";
+
+"Your AI provider quota has been exceeded. Please check your usage limits or try a different provider." = "Your AI provider quota has been exceeded. Please check your usage limits or try a different provider.";
+
+"Your AI provider has run out of credits. Please check your account billing or try a different provider." = "Your AI provider has run out of credits. Please check your account billing or try a different provider.";
+
+"Reset to Default" = "Reset to Default";
+
+"Retake Photo" = "Retake Photo";
+
+"Retry Analysis" = "Retry Analysis";
+
+"Try Different Provider" = "Try Different Provider";
+
+"Check Account" = "Check Account";
+
+"Analysis Error" = "Analysis Error";
+
+"AI Food Analysis" = "AI Food Analysis";
+
+"Use Cancel to retake photo" = "Use Cancel to retake photo";
+
+"Analyzing food with AI..." = "Analyzing food with AI...";
+
+"Choose from Library" = "Choose from Library";
+
+"Take a Photo" = "Take a Photo";
+
+"Keep the camera level to reduce distortion and keep portions proportional." = "Keep the camera level to reduce distortion and keep portions proportional.";
+
+"Shoot from slightly above" = "Shoot from slightly above";
+
+"Forks, cups, or hands help AI calculate realistic portions." = "Forks, cups, or hands help AI calculate realistic portions.";
+
+"Add a size reference" = "Add a size reference";
+
+"Make sure every food item is in the frame." = "Make sure every food item is in the frame.";
+
+"Frame the full meal" = "Frame the full meal";
+
+"Remove napkins, lids, or packaging that may be misidentified as food." = "Remove napkins, lids, or packaging that may be misidentified as food.";
+
+"Clear the area" = "Clear the area";
+
+"Harsh shadows confuse the AI and dim light can hide textures." = "Harsh shadows confuse the AI and dim light can hide textures.";
+
+"Use bright, even light" = "Use bright, even light";
+
+"Better photos = better estimates" = "Better photos = better estimates";
+
+"Scan failed" = "Scan failed";
+
+"Looking up product..." = "Looking up product...";
+
+"Code detected!" = "Code detected!";
+
+"Position camera over barcode or QR code" = "Position camera over barcode or QR code";
+
+"Validating format..." = "Validating format...";
+
+"Scanning for barcode or QR code..." = "Scanning for barcode or QR code...";
+
+"Initializing camera..." = "Initializing camera...";
+
+"Scan failed" = "Scan failed";
+
+"iAPS needs camera access to scan barcodes. Please enable camera access in Settings." = "iAPS needs camera access to scan barcodes. Please enable camera access in Settings.";
+
+"Camera Access Required" = "Camera Access Required";
+
+"Check Permissions" = "Check Permissions";
+
+"Supports traditional barcodes and QR codes" = "Supports traditional barcodes and QR codes";
+
+"Hold steady for best results" = "Hold steady for best results";
+
+"Retry" = "Retry";
+
+"Scan Barcode" = "Scan Barcode";
+
+"📦 Database Results" = "📦 Database Results";
+
+"🤖 AI Search Results" = "🤖 AI Search Results";
+
+"• Use the barcode scanner for packaged foods" = "• Use the barcode scanner for packaged foods";
+
+"• Check spelling carefully" = "• Check spelling carefully";
+
+"• Use simple, common food names" = "• Use simple, common food names";
+
+"• Try brand names (e.g., \"Cheerios\")" = "• Try brand names (e.g., \"Cheerios\")";
+
+"💡 Search Tips:" = "💡 Search Tips:";
+
+"Try simpler terms like \"bread\" or \"apple\", or scan a barcode" = "Try simpler terms like \"bread\" or \"apple\", or scan a barcode";
+
+"Check your spelling and try again" = "Check your spelling and try again";
+
+"No Foods Found" = "No Foods Found";
+
+"Search Error" = "Search Error";
+
+"Finding the best matches for you" = "Finding the best matches for you";
+
+"Searching foods" = "Searching foods";
+
+"AI Analysis" = "AI Analysis";
+
+"Analysis Status" = "Analysis Status";
+
+"❌ Analysis failed" = "❌ Analysis failed";
+
+"⚠️ Connection interrupted..." = "⚠️ Connection interrupted...";
+
+"✅ Analysis complete!" = "✅ Analysis complete!";
+
+"🍽️ Generating nutrition summary..." = "🍽️ Generating nutrition summary...";
+
+"📊 Processing analysis results..." = "📊 Processing analysis results...";
+
+"🤖 Running AI vision analysis..." = "🤖 Running AI vision analysis...";
+
+"⚖️ Comparing to USDA standards..." = "⚖️ Comparing to USDA standards...";
+
+"📏 Calculating serving sizes..." = "📏 Calculating serving sizes...";
+
+"🔬 Identifying food portions..." = "🔬 Identifying food portions...";
+
+"📊 Analyzing nutritional content..." = "📊 Analyzing nutritional content...";
+
+"📡 Uploading image for analysis..." = "📡 Uploading image for analysis...";
+
+"🧠 Connecting to AI provider..." = "🧠 Connecting to AI provider...";
+
+"💼 Optimizing image quality..." = "💼 Optimizing image quality...";
+
+"📱 Processing image data..." = "📱 Processing image data...";
+
+"🔍 Initializing AI food analysis..." = "🔍 Initializing AI food analysis...";
+
+"⚡ Processing AI analysis results..." = "⚡ Processing AI analysis results...";
+
+"📥 Received response from Claude..." = "📥 Received response from Claude...";
+
+"⏳ AI is cooking up results..." = "⏳ AI is cooking up results...";
+
+"🌐 Sending request to Claude..." = "🌐 Sending request to Claude...";
+
+"📡 Preparing API request..." = "📡 Preparing API request...";
+
+"🔄 Encoding image data..." = "🔄 Encoding image data...";
+
+"🖼️ Optimizing your image..." = "🖼️ Optimizing your image...";
+
+"⚙️ Configuring Claude parameters..." = "⚙️ Configuring Claude parameters...";
+
+"⚙️ Processing analysis results..." = "⚙️ Processing analysis results...";
+
+"📊 Calculating nutrition estimates..." = "📊 Calculating nutrition estimates...";
+
+"🍽️ Identifying food characteristics..." = "🍽️ Identifying food characteristics...";
+
+"📱 Analyzing image properties..." = "📱 Analyzing image properties...";
+
+"📊 Initializing basic analysis..." = "📊 Initializing basic analysis...";
+
+"🤖 Connecting to Google Gemini..." = "🤖 Connecting to Google Gemini...";
+
+"📥 Received response from Gemini..." = "📥 Received response from Gemini...";
+
+"🌐 Sending request to Google Gemini..." = "🌐 Sending request to Google Gemini...";
+
+"🔄 Encoding image data..." = "🔄 Encoding image data...";
+
+"⚙️ Configuring Gemini parameters..." = "⚙️ Configuring Gemini parameters...";
+
+"📥 Received response from OpenAI..." = "📥 Received response from OpenAI...";
+
+"💾 Caching analysis result..." = "💾 Caching analysis result...";
+
+"⏳ Doing a deep analysis (may take a bit)..." = "⏳ Doing a deep analysis (may take a bit)...";
+
+"🎯 Selecting optimal AI provider..." = "🎯 Selecting optimal AI provider...";
+
+"⚡ Starting parallel provider analysis..." = "⚡ Starting parallel provider analysis...";
+
+"Amount:" = "Amount:";
+
+"Take Over" = "Take Over";
+
+"kcal" = "kcal";
+
+"Cal" = "Cal";
+
+
+// --------- End of AI ---------
+/* */
+
 "Temp Basal" = "Temp Basal";
 
 /* */
@@ -1254,13 +1799,19 @@ Enact a temp Basal or a temp target */
 /* Pump Error */
 "Pump is Busy." = "Pump is Busy.";
 
+/* Alert when bolus is already in progress (tapping the bolus button) */
+"Bolus already in Progress!" = "Bolus already in Progress!";
+
 /* -------------- Developer settings ---------------------- */
 /* Debug options */
 
 "Developer" = "Developer";
 
 /* Debug option view NS Upload Profile */
-"NS Upload Profile" = "NS Upload Profile";
+"NS Upload Profile and Settings" = "NS Upload Profile and Settings";
+
+/* Debug option delete all NS overrides */
+"Delete All NS Overrides" = "Delete All NS Overrides";
 
 /* Debug option view NS Uploaded Profile */
 "NS Uploaded Profile" = "NS Uploaded Profile";
@@ -1283,8 +1834,11 @@ Enact a temp Basal or a temp target */
 /* Debug option view Pump History */
 "Pump History" = "Pump History";
 
+/* Debug option view Temp Basals */
+"Temp Basals" = "Temp Basals";
+
 /* Debug option view Target Ranges */
-"Target ranges" = "Target ranges";
+"Targets ranges" = "Targets ranges";
 
 /* Debug option view Temp targets */
 "Temp targets" = "Temp targets";
@@ -1307,6 +1861,9 @@ Enact a temp Basal or a temp target */
 /* Debug option view Enacted announcements announcements (from NS) */
 "Enacted announcements" = "Enacted announcements";
 
+/* Debug option view Not Uploaded Overrides */
+"Overrides Not Uploaded" = "Overrides Not Uploaded";
+
 /* Debug option view Autotune */
 "Autotune" = "Autotune";
 
@@ -1327,10 +1884,10 @@ Enact a temp Basal or a temp target */
 "Connect to Apple Health" = "Connect to Apple Health";
 
 /* Show when have not permissions for writing to Health */
-"For write data to Apple Health you must give permissions in Settings > Health > Data Access" = "For write data to Apple Health you must give permissions in Settings > Health > Data Access";
+"To allow iAPS to write data to Apple Health, you must grant permission in Settings > Health > Data Access." = "To allow iAPS to write data to Apple Health, you must grant permission in Settings > Health > Data Access.";
 
 /* */
-"This allows iAPS to read from and write to Apple Heath. You must also give permissions in Settings > Health > Data Access. If you enter a glucose value into Apple Health, open iAPS to confirm it shows up." = "This allows iAPS to read from and write to Apple Heath. You must also give permissions in Settings > Health > Data Access. If you enter a glucose value into Apple Health, open iAPS to confirm it shows up.";
+"This allows iAPS to read from and write to Apple Heath. You must also give permissions in Settings > Health > Data Access." = "This allows iAPS to read from and write to Apple Heath. You must also give permissions in Settings > Health > Data Access.";
 
 /* New ALerts ------------------------- */
 /* Info title */
@@ -1358,7 +1915,7 @@ Enact a temp Basal or a temp target */
 " -  Manual Basal ⚠️" = " -  Manual Basal ⚠️";
 
 /* Total AT / Scheduled basal insulin */
-" U/day" = " U/day";
+"U/day" = "U/day";
 
 /* Total AT / Scheduled basal insulin */
 "Total" = "Total";
@@ -1407,8 +1964,14 @@ Enact a temp Basal or a temp target */
 /* Service Section */
 "Fat And Protein Conversion" = "Fat And Protein Conversion";
 
+/* Ignore flat CGM readings */
+"Ignore flat CGM readings" = "Ignore flat CGM readings";
+
 /* Service Section */
 "Profile Override" = "Profile Override";
+
+/* Extend max override percentage */
+"Max Override 400%" = "Max Override 400%";
 
 /* */
 "Override Profiles" = "Override Profiles";
@@ -1433,6 +1996,21 @@ Enact a temp Basal or a temp target */
 /* */
 "Disable SMBs" = "Disable SMBs";
 
+/* */
+"End the Override with next Meal" = "End the Override with next Meal";
+
+/* */
+"End the Override when Glucose is Trending Up" = "End the Override when Glucose is Trending Up";
+
+/* */
+"And when Glucose is higher than" = "And when Glucose is higher than";
+
+/* */
+"End the Override when Glucose is Lower ..." = "End the Override when Glucose is Lower ...";
+
+/* */
+"... than" = "... than";
+
 /* Your normal Profile. Use a short string */
 "Normal Profile" = "Normal Profile";
 
@@ -1443,13 +2021,16 @@ Enact a temp Basal or a temp target */
 "Profiles" = "Profiles";
 
 /* */
+"Advanced Settings" = "Advanced Settings";
+
+/* */
 "More options" = "More options";
 
 /* */
 "Schedule when SMBs are Off" = "Schedule when SMBs are Off";
 
 /* */
-"Change ISF and CR" = "Change ISF and CR";
+"Change ISF and CR and Basal" = "Change ISF and CR and Basal";
 
 /* */
 "Change ISF" = "Change ISF";
@@ -1458,10 +2039,16 @@ Enact a temp Basal or a temp target */
 "Change CR" = "Change CR";
 
 /* */
+"Change Basal" = "Change Basal";
+
+/* */
 "SMB Minutes" = "SMB Minutes";
 
 /* */
 "UAM SMB Minutes" = "UAM SMB Minutes";
+
+/* */
+"Override Max IOB" = "Override Max IOB";
 
 /* */
 "Start new Profile" = "Start new Profile";
@@ -1523,6 +2110,15 @@ Enact a temp Basal or a temp target */
 /* */
 "Meal Presets" = "Meal Presets";
 
+/* Back button */
+"Back" = "Takaisin";
+
+/* Search Saved Food presets */
+"Search" = "Search";
+
+/* Placeholder for name of dish when adding a new food preset */
+"New" = "New";
+
 /* */
 "Empty" = "Empty";
 
@@ -1566,6 +2162,9 @@ Enact a temp Basal or a temp target */
 
 /* */
 "Eventual Glucose" = "Eventual Glucose";
+
+/* */
+"Minimum Predicted Glucose" = "Minimum Predicted Glucose";
 
 /* */
 "Please wait" = "Please wait";
@@ -1620,6 +2219,12 @@ Enact a temp Basal or a temp target */
 
 /* Add insulin without bolusing alert */
 " without bolusing" = " without bolusing";
+
+/* */
+"Don't Use 15 min Trend" = "Don't Use 15 min Trend";
+
+/* */
+"Don't adjust for past 15 minutes glucose trend." = "Don't adjust for past 15 minutes glucose trend.";
 
 /* -------------------------------------------------------------------------------------------
   DASH strings
@@ -1704,7 +2309,7 @@ Enact a temp Basal or a temp target */
 "%1$@ for %2$@" = "%1$@ for %2$@";
 
 /* Description text on manual temp basal action sheet */
-"Loop will not automatically adjust your insulin delivery until the temporary basal rate finishes or is canceled." = "Loop will not automatically adjust your insulin delivery until the temporary basal rate finishes or is canceled.";
+"iAPS will not automatically adjust your insulin delivery until the temporary basal rate finishes or is canceled." = "iAPS will not automatically adjust your insulin delivery until the temporary basal rate finishes or is canceled.";
 /* Button text for setting manual temporary basal rate*/
 "Set Temporary Basal" = "Set Temporary Basal";
 
@@ -1797,13 +2402,13 @@ Enact a temp Basal or a temp target */
 "Change HbA1c Unit" = "Change HbA1c Unit";
 
 /* */
-"Display Chart X - Grid lines" = "Display Chart X - Grid lines";
+"Vertical grid lines" = "Vertical grid lines";
 
 /* */
-"Display Chart Y - Grid lines" = "Display Chart Y - Grid lines";
+"Horizontal grid lines" = "Horizontal grid lines";
 
 /* */
-"Display Chart Threshold lines for Low and High" = "Display Chart Threshold lines for Low and High";
+"Threshold lines (Low / High)" = "Threshold lines (Low / High)";
 
 /* */
 "Standing / Laying TIR Chart" = "Standing / Laying TIR Chart";
@@ -1815,10 +2420,16 @@ Enact a temp Basal or a temp target */
 "2 hours" = "2 hours";
 
 /* */
+"3 hours" = "3 hours";
+
+/* */
 "4 hours" = "4 hours";
 
 /* */
 "6 hours" = "6 hours";
+
+/* */
+"9 hours" = "9 hours";
 
 /* */
 "12 hours" = "12 hours";
@@ -1931,6 +2542,42 @@ Enact a temp Basal or a temp target */
 /* HbA1c for all glucose storage days */
 "all" = "all";
 
+/* IOB View */
+"Insulin on Board" = "Insulin on Board";
+
+/* Active Insulin View */
+"Time with negative insulin" = "Time with negative insulin";
+
+/* Active Insulin View */
+"Insulin compared to yesterday" = "Insulin compared to yesterday";
+
+/* Active Insulin View */
+"Insulin compared to average" = "Insulin compared to average";
+
+/* Active Insulin View */
+"Average Insulin 10 days" = "Average Insulin 10 days";
+
+/* Active Insulin View */
+"TDD yesterday" = "TDD yesterday";
+
+/* Active Insulin View */
+"TDD 2 days ago" = "TDD 2 days ago";
+
+/* Active Insulin View */
+"TDD 3 days ago" = "TDD 3 days ago";
+
+/* COB View */
+"Carbohydrates on Board" = "Carbohydrates on Board";
+
+/* UI/UX-setting */
+"Display COB Chart" = "Display COB Chart";
+
+/* UI/UX-setting */
+"Display Insulin Activity Chart" = "Display Insulin Activity Chart";
+
+/* UI/UX-setting */
+"Don't ask for saving search result as meal preset" = "Don't ask for saving search result as meal preset";
+
 /* --------------------------------------------------------  Dexcom G7 --------------------------------------*/
 
 "CGM Configuration" = "CGM Configuration";
@@ -1956,7 +2603,7 @@ Enact a temp Basal or a temp target */
 "Share and Backup" = "Share and Backup";
 
 /* Section 1 title */
-"Upload settings and statistics" = "Upload settings and statistics";
+"Upload Settings and Statistics" = "Upload Settings and Statistics";
 
 /* On-off toggle */
 "Share and Backup all of your Settings and Statistics" = "Share and Backup all of your Settings and Statistics";
@@ -2008,9 +2655,6 @@ Enact a temp Basal or a temp target */
 
 /* */
 "Share your data anonymously" = "Share your data anonymously";
-
-/* Setting Title */
-"Sharing" = "Sharing";
 
 /* ——————————Contact Image ————————*/
 /* Contact Image, contacts list - prefix before the contact given name */
@@ -2163,6 +2807,242 @@ Enact a temp Basal or a temp target */
 
 /* Contact Image, settings, loop status (data to display) */
 "LoopStatusContactValue" = "Loop status";
+
+/* --------------------------  Dana Pump  ---------------------- */
+/* Dana footer */
+
+"Dana pump does not allow editing of max basal and max bolus. Configure these in the doctor's settings of the pump. Saving the settings will fetch the lastest values from the pump" = "Dana pump does not allow editing of max basal and max bolus. Configure these in the doctor's settings of the pump. Saving the settings will fetch the lastest values from the pump";
+
+/* --------- Auto ISF --------- */
+/* */
+
+"Dynamic ISF is disabled while Auto ISF is enabled" = "Dynamic ISF is disabled while Auto ISF is enabled";
+
+/* */
+"Default value: 1.2 The upper limit of ISF adjustment" = "Default value: 1.2 The upper limit of ISF adjustment";
+
+
+/* */
+"Default value: 0.8 The lower limit of ISF adjustment" = "Default value: 0.8 The lower limit of ISF adjustment";
+
+/* */
+"Auto ISF Max" = "Auto ISF Max";
+
+/* */
+"Auto ISF Min" = "Auto ISF Min";
+
+/* */
+"Needs an EatingSoon specific Glucose Target set by a profile override or a temp target" = "Needs an EatingSoon specific Glucose Target set by a profile override or a temp target";
+
+/* */
+"Once this Target is cancelled, the B30 high TBR will be cancelled" = "Once this Target is cancelled, the B30 high TBR will be cancelled";
+
+/* */
+"In order to activate B30 a minimum manual Bolus needs to be given" = "In order to activate B30 a minimum manual Bolus needs to be given";
+
+/* */
+"You can specify how long B30 run and how high it is" = "You can specify how long B30 run and how high it is";
+
+/* */
+"Absolute Safety TBR " = "Absolute Safety TBR ";
+
+/* */
+"Amount in U/hr of the small safety TBR, which is given to avoid ketoacidosis. Will be limited to min = 0U/hr, max = 2U/hr!" = "Amount in U/hr of the small safety TBR, which is given to avoid ketoacidosis. Will be limited to min = 0U/hr, max = 2U/hr!";
+
+/* */
+"Enable Keto protection with pre-defined TBR" = "Enable Keto protection with pre-defined TBR";
+
+/* */
+"Should an absolute TBR between 0 and 2 U/hr be specified instead of percentage of current BR" = "Should an absolute TBR between 0 and 2 U/hr be specified instead of percentage of current BR";
+
+/* */
+"Safety TBR in %" = "Safety TBR in %";
+
+/* */
+"Quantity of the small safety TBR in % of Profile BR, which is given to avoid ketoacidosis. Will be limited to min = 5%, max = 50%!" = "Quantity of the small safety TBR in % of Profile BR, which is given to avoid ketoacidosis. Will be limited to min = 5%, max = 50%!";
+
+/* */
+"Variable Keto Protection" = "Variable Keto Protection";
+
+/* */
+"If activated the small safety TBR kicks in when IOB is in negative range as if no basal insulin has been delivered for one hour. If deactivated and static is enabled every Zero Temp is replaced with the small TBR." = "If activated the small safety TBR kicks in when IOB is in negative range as if no basal insulin has been delivered for one hour. If deactivated and static is enabled every Zero Temp is replaced with the small TBR.";
+
+/* */
+"Enable Keto Protection" = "Enable Keto Protection";
+
+/* */
+"Ketoacidosis protection will apply a small configurable Temp Basal Rate always or if certain conditions arise instead of a Zero temp!\nThe feature exists because in special cases a person could get ketoacidosis from 0% TBR. The idea is derived from sport. There could be problems when a basal rate of 0% ran for several hours. Muscles in particular could shut off.\nThis feature enables a small safety TBR to reduce the ketoacidosis risk. Without the Variable Protection that safety TBR is always applied. The idea behind the variable protection strategy is that the safety TBR is only applied if sum of basal-IOB and bolus-IOB falls negatively below the value of the current basal rate." = "Ketoacidosis protection will apply a small configurable Temp Basal Rate always or if certain conditions arise instead of a Zero temp!\nThe feature exists because in special cases a person could get ketoacidosis from 0% TBR. The idea is derived from sport. There could be problems when a basal rate of 0% ran for several hours. Muscles in particular could shut off.\nThis feature enables a small safety TBR to reduce the ketoacidosis risk. Without the Variable Protection that safety TBR is always applied. The idea behind the variable protection strategy is that the safety TBR is only applied if sum of basal-IOB and bolus-IOB falls negatively below the value of the current basal rate.";
+
+/* */
+"B30 Settings" = "B30 Settings";
+
+/* */
+"Duration of increased B30 basal rate" = "Duration of increased B30 basal rate";
+
+/* */
+"Duration of increased basal rate that saturates the infusion site with insulin. Default 30 minutes, as in B30. The EatingSoon TT needs to be running at least for this duration, otherthise B30 will stopp after the TT runs out." = "Duration of increased basal rate that saturates the infusion site with insulin. Default 30 minutes, as in B30. The EatingSoon TT needs to be running at least for this duration, otherthise B30 will stopp after the TT runs out.";
+
+/* */
+"B30 Basal rate increase factor" = "B30 Basal rate increase factor";
+
+/* */
+"Factor that multiplies your normal regular basal rate for B30. Max Basal rate enacted is the max of your pump max Basal setting. Default is 5." = "Factor that multiplies your normal regular basal rate for B30. Max Basal rate enacted is the max of your pump max Basal setting. Default is 5.";
+
+/* */
+"Upper Delta limit" = "Upper Delta limit";
+
+/* */
+"SMBs will be disabled when under this limit, while a B30 Basal rate is running. Default is 8 mg/dl (0.5 mmol/l)." = "SMBs will be disabled when under this limit, while a B30 Basal rate is running. Default is 8 mg/dl (0.5 mmol/l).";
+
+/* */
+"Upper BG limit" = "Upper BG limit";
+
+/* */
+"SMBs will be disabled when under this limit, while a B30 Basal rate is running. Default is 130 mg/dl (7.2 mmol/l)." = "SMBs will be disabled when under this limit, while a B30 Basal rate is running. Default is 130 mg/dl (7.2 mmol/l).";
+
+/* */
+"Target Level for B30 to be enacted" = "Target Level for B30 to be enacted";
+
+/* */
+"An EatingSoon Override Target (or a Temporary Target) needs to be activated to start the B30 adaption. Target needs to be below this setting for B30 to start. Default is 90 mg/dl. If you cancel this EatingSoon Target, the B30 basal rate will stop." = "An EatingSoon Override Target (or a Temporary Target) needs to be activated to start the B30 adaption. Target needs to be below this setting for B30 to start. Default is 90 mg/dl. If you cancel this EatingSoon Target, the B30 basal rate will stop.";
+
+/* */
+"Minimum Start Bolus size" = "Minimum Start Bolus size";
+
+/* */
+"Minimum manual bolus to start a B30 adaption." = "Minimum manual bolus to start a B30 adaption.";
+
+/* */
+"Activate B30" = "Activate B30";
+
+/* */
+"Enables an increased basal rate after an EatingSoon Override Target (or Temp Target) and a manual bolus to saturate the infusion site with insulin to increase insulin absorption for SMB's following a meal with no carb counting." = "Enables an increased basal rate after an EatingSoon Override Target (or Temp Target) and a manual bolus to saturate the infusion site with insulin to increase insulin absorption for SMB's following a meal with no carb counting.";
+
+/* */
+"ISF weight while BG decelerates" = "ISF weight while BG decelerates";
+
+/* */
+"This is the weight applied while glucose decelerates and which weakens ISF. With 0 this contribution is effectively disabled. 0.1 might be a good starting point." = "This is the weight applied while glucose decelerates and which weakens ISF. With 0 this contribution is effectively disabled. 0.1 might be a good starting point.";
+
+/* */
+"ISF weight while BG accelerates" = "ISF weight while BG accelerates";
+
+/* */
+"Default value: 0. This is the weight applied while glucose accelerates and which strengthens ISF. With 0 this contribution is effectively disabled. 0.02 is a safe starting point, from which to move up. Typical settings are around 0.15!" = "Default value: 0. This is the weight applied while glucose accelerates and which strengthens ISF. With 0 this contribution is effectively disabled. 0.02 is a safe starting point, from which to move up. Typical settings are around 0.15!";
+
+/* */
+"Duration ISF postprandial adaption" = "Duration ISF postprandial adaption";
+
+/* */
+"Default value: 3. This is the duration in hours how long after a meal the effect will be active. Oref will delete carb timing after 10 hours latest no matter what you enter." = "Default value: 3. This is the duration in hours how long after a meal the effect will be active. Oref will delete carb timing after 10 hours latest no matter what you enter.";
+
+/* */
+"ISF weight for postprandial BG rise" = "ISF weight for postprandial BG rise";
+
+/* */
+"This is the weight applied to the linear slope while glucose rises and  which adapts ISF. With 0 this contribution is effectively disabled. Start with 0.01 - it hardly goes beyond 0.05!" = "This is the weight applied to the linear slope while glucose rises and  which adapts ISF. With 0 this contribution is effectively disabled. Start with 0.01 - it hardly goes beyond 0.05!";
+
+/* */
+"ISF weight for higher BG deltas" = "ISF weight for higher BG deltas";
+
+/* */
+"Default value: 0.0 This is the weight applied to the polygon which adapts ISF higher deltas. With 0.0 the effect is effectively disabled." = "Default value: 0.0 This is the weight applied to the polygon which adapts ISF higher deltas. With 0.0 the effect is effectively disabled.";
+
+/* */
+"ISF weight for lower BG" = "ISF weight for lower BG";
+
+/* */
+"Default value: 0.0 This is the weight applied to the polygon which adapts ISF if glucose is below target. With 0.0 the effect is effectively disabled." = "Default value: 0.0 This is the weight applied to the polygon which adapts ISF if glucose is below target. With 0.0 the effect is effectively disabled.";
+
+/* */
+"ISF weight for higher BG" = "ISF weight for higher BG";
+
+/* */
+"Default value: 0.0 This is the weight applied to the polygon which adapts ISF if glucose is above target. With 0.0 the effect is effectively disabled." = "Default value: 0.0 This is the weight applied to the polygon which adapts ISF if glucose is above target. With 0.0 the effect is effectively disabled.";
+
+/* */
+"Duration Weight" = "Duration Weight";
+
+/* */
+"Weight for a prolonged high glucose. For every hour the glucose stays high this adjustment will lower your ISF more.\n\nThe formula for Dura ISF adjustment is:\n\nDura ISF = 1 + hours above target * weight / target * (average glucose - target glucose)" = "Weight for a prolonged high glucose. For every hour the glucose stays high this adjustment will lower your ISF more.\n\nThe formula for Dura ISF adjustment is:\n\nDura ISF = 1 + hours above target * weight / target * (average glucose - target glucose)";
+
+/* */
+"SMB Delivery Ratio BG Range" = "SMB Delivery Ratio BG Range";
+
+/* SMB Delivery Ratio BG Range description */
+"Default value: 0, Sensible is between 40 mg/dL and 120 mg/dL. The linearly increasing SMB delivery ratio is mapped to the glucose range [target_bg, target_bg+bg_range]. At target_bg the SMB ratio is smb_delivery_ratio_min, at target_bg+bg_range it is smb_delivery_ratio_max. With 0 the linearly increasing SMB ratio is disabled and the fix smb_delivery_ratio is used." = "Default value: 0, Sensible is between 40 mg/dL and 120 mg/dL. The linearly increasing SMB delivery ratio is mapped to the glucose range [target_bg, target_bg+bg_range]. At target_bg the SMB ratio is smb_delivery_ratio_min, at target_bg+bg_range it is smb_delivery_ratio_max. With 0 the linearly increasing SMB ratio is disabled and the fix smb_delivery_ratio is used.";
+
+/* */
+"SMB Delivery Ratio Maximum" = "SMB Delivery Ratio Maximum";
+
+/* */
+"Default value: 0.5 This is the higher end of a linearly increasing SMB Delivery Ratio rather than the fix value in OpenAP SMB Delivery Ratio." = "Default value: 0.5 This is the higher end of a linearly increasing SMB Delivery Ratio rather than the fix value in OpenAP SMB Delivery Ratio.";
+
+/* */
+"SMB Delivery Ratio Minimum" = "SMB Delivery Ratio Minimum";
+
+/* */
+"Default value: 0.5 This is the lower end of a linearly increasing SMB Delivery Ratio rather than the fix value in OpenAP SMB Delivery Ratio." = "Default value: 0.5 This is the lower end of a linearly increasing SMB Delivery Ratio rather than the fix value in OpenAP SMB Delivery Ratio.";
+
+/* */
+"Toggles" = "Toggles";
+
+/* */
+"Enable postprandial ISF adaption always" = "Enable postprandial ISF adaption always";
+
+/* */
+"Enable the postprandial ISF adaptation all the time regardless of when the last meal was taken." = "Enable the postprandial ISF adaptation all the time regardless of when the last meal was taken.";
+
+/* */
+"Enable DuraISF effect even with COB" = "Enable DuraISF effect even with COB";
+
+/* */
+"Enable DuraISF even if COB is present not just for UAM." = "Enable DuraISF even if COB is present not just for UAM.";
+
+/* */
+"Enable BG acceleration" = "Enable BG acceleration";
+
+/* */
+"Enables the BG acceleration adaptions, adjusting ISF for accelerating/decelerating blood glucose." = "Enables the BG acceleration adaptions, adjusting ISF for accelerating/decelerating blood glucose.";
+
+/* */
+"Override Auto ISF" = "Override Auto ISF";
+
+/* */
+"Enable Auto ISF" = "Enable Auto ISF";
+
+/* */
+"Enables Auto ISF. This will disable any eventual dynamic ISF/CR setting" = "Enables Auto ISF. This will disable any eventual dynamic ISF/CR setting";
+
+/* */
+"Keto Protection" = "Keto Protection";
+
+/* */
+"Max IOB Threshold Percent" = "Max IOB Threshold Percent";
+
+/* IOB Threshold Percent Description */
+"Percentage of the max IOB setting to use for SMBs while Auto ISF is enabled.\n\nWhile current IOB is below the threshold, the SMB amount can exceed the threshold by 30%, however never the max IOB setting.\n\nAt 100% this setting is disabled." = "Percentage of the max IOB setting to use for SMBs while Auto ISF is enabled.\n\nWhile current IOB is below the threshold, the SMB amount can exceed the threshold by 30%, however never the max IOB setting.\n\nAt 100% this setting is disabled.";
+
+/* */
+"Auto ISF" = "Auto ISF";
+
+/* Is true */
+" on" = " on";
+
+/* Is false */
+" off" = " off";
+
+/* Override adjustment of ISF, CR and Basal */
+"Adjust " = "Adjust ";
+
+/* History of the adjustments */
+"Final Ratio" = "Final Ratio";
+
+/* History of the adjustments */
+"Adjustments" = "Adjustments";
+
+/* History of the adjustments */
+"Insulin" = "Insulin";
 
 /* ---------------------------------------------------------------------------------------------------------------
   Infotexts from openaps.docs and androidaps.docs
@@ -2350,7 +3230,7 @@ Enact a temp Basal or a temp target */
 "Remaining Carbs Cap" = "Remaining Carbs Cap";
 
 /* "Remaining Carbs Cap" */
-"This is the amount of the maximum number of carbs we’ll assume will absorb over 4h if we don’t yet see carb absorption." = "This is the amount of the maximum number of carbs we’ll assume will absorb over 4h if we don’t yet see carb absorption.";
+"This is the amount of the maximum number of carbs we’ll assume will absorb over 4h if we don’t yet see carb absorption. Maximum 90" = "This is the amount of the maximum number of carbs we’ll assume will absorb over 4h if we don’t yet see carb absorption. Maximum 90";
 
 /* Headline ”Max SMB Basal Minutes" */
 "Max SMB Basal Minutes" = "Max SMB Basal Minutes";
@@ -2490,6 +3370,18 @@ Enact a temp Basal or a temp target */
 "Use alternate Bolus Calculator" = "Use alternate Bolus Calculator";
 
 /* Bolus Calculator Setting */
+"Use Bolus Calculator" = "Use Bolus Calculator";
+
+/* Bolus Calculator Setting */
+"Depending on your settings the Swift bolus calculator is using data from the OpenAPS glucose predictions and/or from IOB, COB, glucose trend, current gluccose and target glucose. At the end of the calculation a custom factor is applied (default 0.8).\n\nYou can also have the option in your bolus calculator to apply another (!) customizable factor at the end of the calculation which could be useful for fatty meals, e.g Pizza (default 0.7).\n\nThe bolus calculator is NOT using the OpenAPS variable \"insulinRequired\", made for SMBs." = "Depending on your settings the Swift bolus calculator is using data from the OpenAPS glucose predictions and/or from IOB, COB, glucose trend, current gluccose and target glucose. At the end of the calculation a custom factor is applied (default 0.8).\n\nYou can also have the option in your bolus calculator to apply another (!) customizable factor at the end of the calculation which could be useful for fatty meals, e.g Pizza (default 0.7).\n\nThe bolus calculator is NOT using the OpenAPS variable \"insulinRequired\", made for SMBs.";
+
+/* Bolus Calculator Setting */
+"Adjustment" = "Adjustment";
+
+/* Bolus Calculator Setting */
+"Use OpenAPS glucose predictions" = "Use OpenAPS glucose predictions";
+
+/* Bolus Calculator Setting */
 "Fatty Meals" = "Fatty Meals";
 
 /* Bolus Calculator Setting */
@@ -2498,8 +3390,14 @@ Enact a temp Basal or a temp target */
 /* Bolus Calculator Footer */
 "The new alternate bolus calculator is another approach to the default bolus calculator in iAPS. If the toggle is on you use this bolus calculator and not the original iAPS calculator. At the end of the calculation a custom factor is applied as it is supposed to be when using smbs (default 0.8).\n\nYou can also add the option in your bolus calculator to apply another (!) customizable factor at the end of the calculation which could be useful for fatty meals, e.g Pizza (default 0.7)." = "The new alternate bolus calculator is another approach to the default bolus calculator in iAPS. If the toggle is on you use this bolus calculator and not the original iAPS calculator. At the end of the calculation a custom factor is applied as it is supposed to be when using smbs (default 0.8).\n\nYou can also add the option in your bolus calculator to apply another (!) customizable factor at the end of the calculation which could be useful for fatty meals, e.g Pizza (default 0.7).";
 
+/* Bolus Calculator Setting */
+"1. Use the OpenAPS eventual glucose prediction for computing the insulin recommended. This setting will enable the \"old\" calculator. On by default.\n\n2. Use the OpenAPS minPredBG prediction as a complementary safety guard rail, not allowing the glucose prediction to descend below your threshold. This setting can be used together with or without the eventual glucose. On by default" = "1. Use the OpenAPS eventual glucose prediction for computing the insulin recommended. This setting will enable the \"old\" calculator. On by default.\n\n2. Use the OpenAPS minPredBG prediction as a complementary safety guard rail, not allowing the glucose prediction to descend below your threshold. This setting can be used together with or without the eventual glucose. On by default";
+
 /* Settings Section */
 "Extra Features" = "Extra Features";
+
+/* Header */
+"UI/UX Settings" = "UI/UX Settings";
 
 /* UI/UX option */
 "Display Predictions" = "Display Predictions";
@@ -2515,6 +3413,12 @@ Enact a temp Basal or a temp target */
 
 /* UI/UX option */
 "Display Temp Targets Button" = "Display Temp Targets Button";
+
+/* UI/UX option */
+"Display Profile Override Button" = "Display Profile Override Button";
+
+/* UI/UX option */
+"Display Meal Button" = "Display Meal Button";
 
 /* UI/UX option */
 "Home View Button Panel " = "Home View Button Panel ";
@@ -2554,6 +3458,57 @@ Enact a temp Basal or a temp target */
 /* UI/UX option */
 "Display Glucose Delta" = "Display Glucose Delta";
 
+/* UI/UX option */
+"Display Sensor Age" = "Display Sensor Age";
+
+/* UI/UX option */
+"Display Sensor Time Remaining" = "Display Sensor Time Remaining";
+
+/* UI/UX option */
+"Hide Concentration Badge" = "Hide Concentration Badge";
+
+/* UI/UX option */
+"Use insulin bars" = "Use insulin bars";
+
+/* UI/UX option */
+"Use carb bars" = "Use carb bars";
+
+/* UI/UX option */
+"Hide the bolus amount strings when amount is under" = "Hide the bolus amount strings when amount is under";
+
+/* UI/UX option */
+"Display carb equivalents" = "Display carb equivalents";
+
+/* UI/UX option */
+"Display carb equivalent amount" = "Display carb equivalent amount";
+
+/* UI/UX option */
+"Display Ratio and a History View button" = "Display Ratio and a History View button";
+
+/* UI/UX option */
+"Home View Ratio Button" = "Home View Ratio Button";
+
+/* UI/UX option */
+"Light" = "Light";
+
+/* UI/UX option */
+"Dark" = "Dark";
+
+/* UI/UX option */
+"Auto" = "Auto";
+
+/* UI/UX option */
+"Color Scheme" = "Color Scheme";
+
+/* UI/UX option */
+"Light / Dark Mode" = "Light / Dark Mode";
+
+/* Debug option */
+"Neglect Carbohydrates in oref0" = "Neglect Carbohydrates in oref0";
+
+/* Debug option */
+"Hide Predictions" = "Hide Predictions";
+
 /* Setting title */
 "Bolus Calculator" = "Bolus Calculator";
 
@@ -2562,6 +3517,15 @@ Enact a temp Basal or a temp target */
 
 /* Notification option */
 "Live Activity" = "Live Activity";
+
+/* Show Live Activity */
+"Show Live Activity" = "Show Live Activity";
+
+/* Display Chart */
+"Display Chart" = "Display Chart";
+
+/* Show Predictions */
+"Show Predictions" = "Show Predictions";
 
 /* Notification option */
 "Live activity displays blood glucose live on the lock screen and on the dynamic island (if available)" = "Live activity displays blood glucose live on the lock screen and on the dynamic island (if available)";
@@ -2593,10 +3557,10 @@ Enact a temp Basal or a temp target */
 /* Max Delta-BG Threshold SMB */
 "Defaults to 0.2 (20%). Maximum positive percentual change of BG level to use SMB, above that will disable SMB. Hardcoded cap of 40%. For UAM fully-closed-loop 30% is advisable. Observe in log and popup (maxDelta 27 > 20% of BG 100 - disabling SMB!)." = "Defaults to 0.2 (20%). Maximum positive percentual change of BG level to use SMB, above that will disable SMB. Hardcoded cap of 40%. For UAM fully-closed-loop 30% is advisable. Observe in log and popup (maxDelta 27 > 20% of BG 100 - disabling SMB!).";
 
-/* Headline "... When Blood Glucose Is Over (mg/dl):" */
-"... When Blood Glucose Is Over (mg/dl):" = "... When Blood Glucose Is Over (mg/dl):";
+/* Headline "... When Blood Glucose Is Above:" */
+"... When Blood Glucose Is Above:" = "... When Blood Glucose Is Above:";
 
-/* ... When Blood Glucose Is Over (mg/dl): */
+/* ... When Blood Glucose Is Above: */
 "Set the value enableSMB_high_bg will compare against to enable SMB. If BG > than this value, SMBs should enable." = "Set the value enableSMB_high_bg will compare against to enable SMB. If BG > than this value, SMBs should enable.";
 
 /* Headline "Enable SMB With High BG" */
@@ -2613,3 +3577,108 @@ Enact a temp Basal or a temp target */
 
 /* Headline "Adjustment Factor" */
 "Adjustment Factor" = "Adjustment Factor";
+
+/* Apple Watch Overrides */
+"Overrides" = "Overrides";
+
+/* Apple Watch Overrides */
+"Cancel Override" = "Cancel Override";
+
+/* Headline "To enable settings, go to the App Config section in iOS Settings App" */
+"To enable settings, go to the App Config section in iOS Settings App" = "To enable settings, go to the App Config section in iOS Settings App";
+
+/* Section header in CGM view */
+"Active CGM" = "Active CGM";
+
+/* pump name label, when pump is a cgm "Pump/CGM" */
+"Pump/CGM" = "Pump/CGM";
+
+/* Button "Stop using the pump as CGM" */
+"Stop using the pump as CGM" = "Stop using the pump as CGM";
+
+/* Section header in CGM view */
+"Shared App Group Source" = "Shared App Group Source";
+
+/* prefix for the shared app group application */
+"Reading from" = "Reading from";
+
+/* button to disconnect from the shared app group "Disconnect" */
+"Disconnect" = "Disconnect";
+
+
+/* description for Shared App Group Source section */
+"Read BG from an external CGM app using a shared app group." = "Read BG from an external CGM app using a shared app group.";
+
+
+/* prefix before the app name on the button to start reading from shared app group */
+"Read from " = "Read from ";
+
+/* description for the backfill section in Nightscout settings screen */
+"Fetches old glucose readings from Nightscout" = "Fetches old glucose readings from Nightscout";
+
+/* header and button label for the 'upload old glucose' action in Nightscout settings screen */
+"Upload glucose" = "Upload glucose";
+
+/* description for the 'upload old glucose' section in Nightscout settings screen */
+"Uploads old glucose readings to Nightscout" = "Uploads old glucose readings to Nightscout";
+
+/* message when uploads are enabled, but glucose uploads are disabled, in Nightscout settings screen */
+"Glucose upload disabled in CGM settings" = "Glucose upload disabled in CGM settings";
+
+/* header for the CGM list in CGM settings screen */
+"Connect to CGM" = "Connect to CGM";
+
+
+/* message displayed when the pump is configured to be the CGM as well (enlite), in CGM settings screen */
+"Pump+CGM" = "Pump+CGM";
+
+/* label for the button to remove the CGM when the pump is configured to be the CGM as well (enlite), in CGM settings screen */
+"Stop using the pump as CGM" = "Stop using the pump as CGM";
+
+/* hint under the CGM list in CGM settings screen */
+"To receive reading from xDrip4iOS, Glucose Direct or another compatible app, select Shared App Group CGM." = "To receive reading from xDrip4iOS, Glucose Direct or another compatible app, select Shared App Group CGM.";
+
+/* message displayed in pump settings screen when the pump manager reports uncertain delivery */
+"Pump delivery uncertain" = "Pump delivery uncertain";
+
+/* message displayed on home screen when the pump is added but not fully onboarded */
+"Re-connect pump!" = "Re-connect pump!";
+
+/* 'fetch' toggle label in nightscout settings */
+"Fetch" = "Fetch";
+
+/* 'fetch' section header in nightscout settings */
+"Allow Fetching" = "Allow Fetching";
+
+/* 'fetch' scection footer in nightscout settings */
+"iAPS will fetch announcements, carbs and temp targets from Nightscout" = "iAPS will fetch announcements, carbs and temp targets from Nightscout";
+
+/* main chart settings - toggle, controls whether to draw the in-range area backdrop (fill) */
+"In-range area highlight" = "In-range area highlight";
+
+/* main chart settings - toggle, controls whether to show inline BG peaks */
+"Glucose peaks" = "Glucose peaks";
+
+/* main chart settings - toggle, controls whether to show the predictions legend */
+"Predictions legend" = "Predictions legend";
+
+/* main chart settings - toggle, controls whether to draw the secondary chart backdrop (fill) */
+"Secondary chart backdrop" = "Secondary chart backdrop";
+
+/* main chart settings - toggle, controls whether to show insulin activity grid lines */
+"Insulin activity grid lines" = "Insulin activity grid lines";
+
+/* main chart settings - toggle, controls whether to show insulin activity axis labels */
+"Insulin activity labels" = "Insulin activity labels";
+
+/* main chart settings - secondary chart section header */
+"Secondary chart" = "Secondary chart";
+
+/* main chart settings - navigation title and the navigation link label */
+"Main Chart settings" = "Main Chart settings";
+
+/* UI/UX settings - main chart section header */
+"Main Chart" = "Main Chart";
+
+/* main chart settings - toggle, controls whether to show y-axis labels (glucose) */
+"Y-axis labels" = "Y-axis labels";

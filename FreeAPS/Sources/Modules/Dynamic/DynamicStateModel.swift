@@ -10,10 +10,10 @@ extension Dynamic {
         @Published var sigmoid: Bool = false
         @Published var adjustmentFactor: Decimal = 0.5
         @Published var weightPercentage: Decimal = 0.65
-        @Published var tddAdjBasal: Bool = false
         @Published var threshold_setting: Decimal = 65
         @Published var unit: GlucoseUnits = .mmolL
         @Published var averages: (isf: Double, cr: Double, days: Double)?
+        @Published var aisf = false
 
         var preferences: Preferences {
             settingsManager.preferences
@@ -26,8 +26,8 @@ extension Dynamic {
             sigmoid = settings.preferences.sigmoid
             adjustmentFactor = settings.preferences.adjustmentFactor
             weightPercentage = settings.preferences.weightPercentage
-            tddAdjBasal = settings.preferences.tddAdjBasal
             averages = thirtyDaysAverages()
+            aisf = settingsManager.settings.autoisf
 
             if unit == .mmolL {
                 threshold_setting = settings.preferences.threshold_setting.asMmolL
@@ -40,7 +40,6 @@ extension Dynamic {
             preferences.enableDynamicCR == enableDynamicCR &&
                 preferences.adjustmentFactor == adjustmentFactor &&
                 preferences.sigmoid == sigmoid &&
-                preferences.tddAdjBasal == tddAdjBasal &&
                 preferences.threshold_setting == convertBack(threshold_setting) &&
                 preferences.useNewFormula == useNewFormula &&
                 preferences.weightPercentage == weightPercentage
@@ -59,7 +58,6 @@ extension Dynamic {
                 newSettings.enableDynamicCR = enableDynamicCR
                 newSettings.adjustmentFactor = adjustmentFactor
                 newSettings.sigmoid = sigmoid
-                newSettings.tddAdjBasal = tddAdjBasal
                 newSettings.threshold_setting = convertBack(threshold_setting)
                 newSettings.useNewFormula = useNewFormula
                 newSettings.weightPercentage = weightPercentage

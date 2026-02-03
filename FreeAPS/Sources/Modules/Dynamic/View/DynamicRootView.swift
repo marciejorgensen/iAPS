@@ -4,7 +4,7 @@ import Swinject
 extension Dynamic {
     struct RootView: BaseView {
         let resolver: Resolver
-        @StateObject var state = StateModel()
+        @StateObject var state: StateModel
 
         @State var isPresented = false
         @State var description = Text("")
@@ -46,23 +46,34 @@ extension Dynamic {
             return formatter
         }
 
+        init(resolver: Resolver) {
+            self.resolver = resolver
+            _state = StateObject(wrappedValue: StateModel(resolver: resolver))
+        }
+
         var body: some View {
             Form {
                 Section {
-                    HStack {
-                        Toggle(isOn: $state.useNewFormula) {
-                            Text("Activate Dynamic Sensitivity (ISF)")
-                                .onTapGesture {
-                                    info(
-                                        header: "Activate Dynamic Sensitivity (ISF)",
-                                        body: "Calculate a new Insulin Sensitivity Setting (ISF) upon every loop cycle. The new ISF will be based on your current Glucose, total daily dose of insulin (TDD, past 24 hours of all delivered insulin) and an individual Adjustment Factor (recommendation to start with is 0.5 if using Sigmoid Function and 0.8 if not).\n\nAll of the Dynamic ISF and CR adjustments will be limited by your autosens.min/max limits.",
-                                        useGraphics: nil
-                                    )
-                                }
-                        }.disabled(isPresented)
+                    if state.aisf {
+                        Text("Dynamic ISF is disabled while Auto ISF is enabled")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .foregroundStyle(.red)
+                    } else {
+                        HStack {
+                            Toggle(isOn: $state.useNewFormula) {
+                                Text("Activate Dynamic Sensitivity (ISF)")
+                                    .onTapGesture {
+                                        info(
+                                            header: "Activate Dynamic Sensitivity (ISF)",
+                                            body: "Calculate a new Insulin Sensitivity Setting (ISF) upon every loop cycle. The new ISF will be based on your current Glucose, total daily dose of insulin (TDD, past 24 hours of all delivered insulin) and an individual Adjustment Factor (recommendation to start with is 0.5 if using Sigmoid Function and 0.8 if not).\n\nAll of the Dynamic ISF and CR adjustments will be limited by your autosens.min/max limits.",
+                                            useGraphics: nil
+                                        )
+                                    }
+                            }.disabled(isPresented)
+                        }
                     }
 
-                    if state.useNewFormula {
+                    if state.useNewFormula, !state.aisf {
                         HStack {
                             Toggle(isOn: $state.enableDynamicCR) {
                                 Text("Activate Dynamic Carb Ratio (CR)")
@@ -77,9 +88,9 @@ extension Dynamic {
                             }.disabled(isPresented)
                         }
                     }
-                } header: { Text("Enable") }
+                } header: { state.aisf ? nil : Text("Experimental").foregroundStyle(.red) }
 
-                if state.useNewFormula {
+                if state.useNewFormula, !state.aisf {
                     Section {
                         HStack {
                             Toggle(isOn: $state.sigmoid) {
@@ -123,19 +134,6 @@ extension Dynamic {
                             Spacer()
                             DecimalTextField("0", value: $state.weightPercentage, formatter: formatter)
                                 .disabled(isPresented)
-                        }
-
-                        HStack {
-                            Toggle(isOn: $state.tddAdjBasal) {
-                                Text("Adjust basal")
-                                    .onTapGesture {
-                                        info(
-                                            header: "Adjust basal",
-                                            body: "Enable adjustment of basal based on the ratio of current TDD / 7 day average TDD",
-                                            useGraphics: nil
-                                        )
-                                    }
-                            }.disabled(isPresented)
                         }
 
                     } header: { Text("Settings") }
@@ -185,7 +183,7 @@ extension Dynamic {
                             Text("Average CR")
                             Spacer()
                             Text(
-                                glucoseFormatter
+                                daysFormatter
                                     .string(from: averages.cr as NSNumber) ?? ""
                             )
                             Text("g/U").foregroundColor(.secondary)
@@ -217,7 +215,6 @@ extension Dynamic {
                 if scrollView { infoScrollView() } else { infoView() }
             }
             .dynamicTypeSize(...DynamicTypeSize.xxLarge)
-            .onAppear(perform: configureView)
             .navigationBarTitle("Dynamic ISF")
             .navigationBarTitleDisplayMode(.automatic)
             .onDisappear {
@@ -295,7 +292,7 @@ extension Dynamic {
                 }
             }
             .padding(.all, 20)
-            .foregroundStyle(colorScheme == .dark ? Color.white : Color.black)
+            .foregroundStyle(colorScheme == .dark ? IAPSconfig.previewBackgroundLight : IAPSconfig.previewBackgroundDark)
             .background(
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .fill(colorScheme == .dark ? Color(.black) : Color(.white))
