@@ -13,6 +13,7 @@ extension Home {
         @State var isStatusPopupPresented = false
         @State var showCancelAlert = false
         @State var showCancelTTAlert = false
+        @State var showExpirationAlert = false
         @State var triggerUpdate = false
         @State var display = false
         @State var displayGlucose = false
@@ -21,6 +22,7 @@ extension Home {
         @State var showBolusActiveAlert = false
         @State var displayAutoHistory = false
         @State var displayDynamicHistory = false
+        @State var displayAllNutrients = false
 
         let buttonFont = Font.custom("TimeButtonFont", size: 14)
         let viewPadding: CGFloat = 5
@@ -130,7 +132,8 @@ extension Home {
                 displayDelta: $state.displayDelta,
                 scrolling: $displayGlucose, displaySAGE: $state.displaySAGE,
                 displayExpiration: $state.displayExpiration,
-                sensordays: $state.sensorDays
+                sensordays: $state.sensorDays,
+                timerDate: $state.data.timerDate
             )
             .onTapGesture {
                 if state.alarm == nil {
@@ -164,7 +167,7 @@ extension Home {
                     state.setupPump = true
                 }
             }
-            .offset(y: 1)
+            .offset(y: 2)
         }
 
         var loopView: some View {
@@ -286,24 +289,43 @@ extension Home {
                     Divider()
                     HStack {
                         if state.carbButton {
-                            Button { state.showModal(for: .addCarbs(editMode: false, override: false)) }
+                            Button { state.showModal(for: .addCarbs(editMode: false, override: false, mode: .meal)) }
                             label: {
                                 ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
                                     Image(systemName: "fork.knife")
                                         .renderingMode(.template)
                                         .font(.custom("Buttons", size: 24))
-                                        .foregroundColor(colorScheme == .dark ? .loopYellow : .orange)
+                                        .foregroundStyle(colorScheme == .dark ? .loopYellow : .orange)
                                         .padding(8)
-                                        .foregroundColor(.loopYellow)
                                     if let carbsReq = state.carbsRequired {
                                         Text(numberFormatter.string(from: carbsReq as NSNumber)!)
                                             .font(.caption)
-                                            .foregroundColor(.white)
+                                            .foregroundStyle(.white)
                                             .padding(4)
                                             .background(Capsule().fill(Color.red))
                                     }
                                 }
-                            }.buttonStyle(.borderless)
+                            }
+                            .contextMenu {
+                                Button {
+                                    state.showModal(for: .addCarbs(editMode: false, override: false, mode: .presets)) }
+                                label: { Label("Meal Presets", systemImage: "menucard")
+                                }
+                                Button {
+                                    state.showModal(for: .addCarbs(editMode: false, override: false, mode: .barcode)) }
+                                label: { Label("Barcode", systemImage: "barcode.viewfinder")
+                                }
+                                if state.ai {
+                                    Button {
+                                        state.showModal(for: .addCarbs(editMode: false, override: false, mode: .image)) }
+                                    label: { Label("AI Image Analysis", systemImage: "photo.badge.magnifyingglass")
+                                    }
+                                }
+                                Button {
+                                    state.showModal(for: .addCarbs(editMode: false, override: false, mode: .meal)) }
+                                label: { Label("Add Meal", systemImage: "birthday.cake")
+                                }
+                            }
                             Spacer()
                         }
                         Button {
@@ -319,7 +341,7 @@ extension Home {
                                 .font(.custom("Buttons", size: 24))
                         }
                         .buttonStyle(.borderless)
-                        .foregroundColor(.insulin)
+                        .foregroundStyle(.insulin)
                         Spacer()
                         if state.allowManualTemp {
                             Button { state.showModal(for: .manualTempBasal) }
@@ -329,7 +351,7 @@ extension Home {
                                     .resizable()
                                     .frame(width: IAPSconfig.buttonSize, height: IAPSconfig.buttonSize, alignment: .bottom)
                             }
-                            .foregroundColor(.insulin)
+                            .foregroundStyle(.insulin)
                             Spacer()
                         }
                         if state.profileButton {
@@ -359,7 +381,7 @@ extension Home {
                                 .renderingMode(.template)
                                 .font(.custom("Buttons", size: 24))
                                 .padding(8)
-                                .foregroundColor(.loopGreen)
+                                .foregroundStyle(.loopGreen)
                                 .background(isTarget ? .green.opacity(0.15) : .clear)
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .onTapGesture {
@@ -381,7 +403,7 @@ extension Home {
                                 .font(.custom("Buttons", size: 24))
                         }
                         .buttonStyle(.borderless)
-                        .foregroundColor(.gray)
+                        .foregroundStyle(.gray)
                     }
                     .padding(.horizontal, state.allowManualTemp ? 10 : 24)
                     .padding(.bottom, geo.safeAreaInsets.bottom)
@@ -561,13 +583,14 @@ extension Home {
 
         var mealsView: some View {
             addBackground()
-                .frame(minHeight: 190)
+                .frame(minHeight: frameHeight)
                 .overlay {
-                    MealsSummaryView(data: $state.mealData)
+                    mealsSummaryView
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 .addShadows()
                 .padding(.horizontal, 10)
+                .dynamicTypeSize(...DynamicTypeSize.medium)
         }
 
         var loopPreview: some View {
@@ -683,9 +706,9 @@ extension Home {
                                 HStack {
                                     carbsAndInsulinView
                                         .frame(maxHeight: .infinity, alignment: .bottom)
-                                    Spacer()
+                                    // Spacer()
                                     pumpView
-                                        .frame(maxHeight: .infinity, alignment: .bottom)
+                                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                                 }
                                 .dynamicTypeSize(...DynamicTypeSize.xLarge)
                                 .padding(.horizontal, 10)
@@ -754,7 +777,7 @@ extension Home {
                 }
 
                 Button("UI/UX Settings", action: {
-                    state.showModal(for: .statisticsConfig)
+                    state.showModal(for: .uiConfig)
                 })
             }
             .buttonStyle(.borderless)
@@ -789,15 +812,325 @@ extension Home {
             .offset(x: 130)
         }
 
+        private var mealIntervalPicker: some View {
+            HStack(spacing: 10) {
+                ForEach([DateFilter.today, DateFilter.day, DateFilter.week, DateFilter.month]) { interval in
+                    Button {
+                        state.selectedMealInterval = interval
+                        state.setupMeals()
+                    } label: {
+                        Text(NSLocalizedString(interval.title, comment: "Interval"))
+                            .font(.caption.weight(.semibold))
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 8)
+                            .background(
+                                state.selectedMealInterval == interval
+                                    ? Color.secondary
+                                    : Color.gray.opacity(0.15)
+                            )
+                            .foregroundStyle(
+                                state.selectedMealInterval == interval
+                                    ? .white
+                                    : .primary
+                            )
+                            .clipShape(Capsule())
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+        }
+
+        private var mealsSummaryView: some View {
+            VStack {
+                Text("Meals")
+                    .font(.previewHeadline)
+                    .padding(.top, 20)
+                    .padding(.bottom, 15)
+
+                mealIntervalPicker
+                    .padding(.bottom, 10)
+
+                servingsView
+                    .padding(.horizontal, 23)
+
+                caloriesView
+                    .padding(.horizontal, 23)
+
+                carbNutrientsView
+                    .padding(.horizontal, 23)
+                    .padding(.bottom, (savedMicronutrients.isEmpty && !otherMacros) ? 10 : 0)
+
+                if !(savedMicronutrients.isEmpty && !otherMacros) {
+                    micronutrientToggle
+
+                    if displayAllNutrients {
+                        micronutrientsAndMoreView
+                            .padding(.horizontal, 23)
+                            .background(Color(.systemGray5))
+                    }
+                }
+            }
+            .dynamicTypeSize(...DynamicTypeSize.xLarge)
+        }
+
+        private var micronutrientToggle: some View {
+            Button {
+                displayAllNutrients.toggle()
+            } label: {
+                Label(
+                    micronutrientTitle(),
+                    systemImage: "pills.fill"
+                )
+                .font(.caption.weight(.semibold))
+                .labelStyle(.titleAndIcon)
+                .padding(.vertical, 10)
+                .padding(.leading, 20)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .buttonStyle(.borderless)
+            .foregroundStyle(.blue)
+            .padding(.bottom, !displayAllNutrients ? 20 : 10)
+        }
+
+        private var caloriesView: some View {
+            HStack {
+                Text("Kilo Calories")
+                Spacer()
+                Text(
+                    tirFormatter.string(
+                        from: displayedCalories as NSNumber
+                    ) ?? ""
+                )
+            }
+            .foregroundStyle(.secondary)
+        }
+
+        private var servingsView: some View {
+            HStack {
+                Text("Servings")
+                Spacer()
+                Text(
+                    tirFormatter.string(
+                        from: displayedServings as NSNumber
+                    ) ?? ""
+                )
+            }
+            .foregroundStyle(.secondary)
+        }
+
+        private var carbNutrientsView: some View {
+            HStack {
+                Text("Carbs")
+                Spacer()
+                Text(
+                    tirFormatter.string(
+                        from: displayedCarbs as NSNumber
+                    ) ?? ""
+                )
+            }
+            .foregroundStyle(.secondary)
+        }
+
+        private var otherMacroNutrientsView: some View {
+            VStack {
+                if state.mealData.fat > 0 {
+                    micronutrientRow(
+                        "Fat",
+                        value: displayedFat,
+                        unit: "g",
+                        formatter: tirFormatter
+                    )
+                }
+
+                if state.mealData.protein > 0 {
+                    micronutrientRow(
+                        "Protein",
+                        value: displayedProtein,
+                        unit: "g",
+                        progress: MicronutrientProgress.progress(
+                            nutrient: .protein,
+                            amount: NSDecimalNumber(decimal: displayedProtein).doubleValue,
+                            age: state.individual.age,
+                            sex: state.individual.sex
+                        ),
+                        formatter: tirFormatter
+                    )
+                }
+
+                if state.mealData.fiber > 0 {
+                    micronutrientRow(
+                        "Fiber",
+                        value: displayedFiber,
+                        unit: "g",
+                        progress: MicronutrientProgress.progress(
+                            nutrient: .fiber,
+                            amount: NSDecimalNumber(decimal: displayedFiber).doubleValue,
+                            age: state.individual.age,
+                            sex: state.individual.sex
+                        ),
+                        formatter: tirFormatter
+                    )
+                }
+            }
+            .foregroundStyle(.secondary)
+            .font(.callout)
+        }
+
+        private var micronutrientsAndMoreView: some View {
+            VStack(spacing: 4) {
+                otherMacroNutrientsView
+                    .padding(.bottom, otherMacros ? 10 : 0)
+
+                ForEach(savedMicronutrients, id: \.nutrient) { item in
+                    let value = state.mealData.averaged(item.amount)
+
+                    micronutrientRow(
+                        item.nutrient.displayName,
+                        value: value,
+                        unit: item.nutrient.unit,
+                        progress: MicronutrientProgress.progress(
+                            nutrient: item.nutrient,
+                            amount: NSDecimalNumber(decimal: value).doubleValue,
+                            age: state.individual.age,
+                            sex: state.individual.sex
+                        ),
+                        formatter: targetFormatter
+                    )
+                }
+            }
+            .font(.callout)
+            .foregroundStyle(.secondary)
+            .padding(.horizontal, 10)
+            .padding(.top, 10)
+            .padding(.bottom, 30)
+        }
+
+        private func micronutrientRow(
+            _ title: String,
+            value: Decimal,
+            unit: String,
+            progress: NutrientProgress? = nil,
+            formatter: NumberFormatter
+        ) -> some View {
+            VStack(alignment: .leading, spacing: 2) {
+                HStack {
+                    Text(NSLocalizedString(title, comment: ""))
+
+                    Spacer()
+
+                    if let progress {
+                        Text("\(Int(progress.percent.rounded())) %")
+                            .foregroundStyle(progress.color)
+                    }
+
+                    Text(formatter.string(from: NSDecimalNumber(decimal: value)) ?? "")
+
+                    Text(NSLocalizedString(unit, comment: ""))
+                }
+
+                if let progress {
+                    NutrientProgressBar(progress: progress)
+                }
+            }
+        }
+
+        private var otherMacros: Bool {
+            state.mealData.fat > 0 || state.mealData.protein > 0 || state.mealData.fiber > 0
+        }
+
+        private func countOtherMacros() -> Int {
+            var total = 0
+            total += state.mealData.fat > 0 ? 1 : 0
+            total += state.mealData.protein > 0 ? 1 : 0
+            total += state.mealData.fiber > 0 ? 1 : 0
+            return total
+        }
+
+        private var nutrientsCount: Int {
+            state.mealData.micronutrients.count + countOtherMacros()
+        }
+
+        private func micronutrientTitle() -> String {
+            let count = state.mealData.additionalNutrients + countOtherMacros()
+
+            guard count > 0 else {
+                return String.empty
+            }
+
+            guard count > 1 else {
+                return "\(count) " + NSLocalizedString("more nutrient", comment: "")
+            }
+
+            return "\(count) " + NSLocalizedString("more nutrients", comment: "")
+        }
+
+        /// Currently constant. The Average Day Title
+        private var intervalTitle: String { "Day" }
+
+        private var displayedServings: Decimal {
+            state.mealData.averaged(state.mealData.servings)
+        }
+
+        private var displayedCarbs: Decimal {
+            state.mealData.averaged(state.mealData.carbs)
+        }
+
+        private var displayedFat: Decimal {
+            state.mealData.averaged(state.mealData.fat)
+        }
+
+        private var displayedProtein: Decimal {
+            state.mealData.averaged(state.mealData.protein)
+        }
+
+        private var displayedFiber: Decimal {
+            state.mealData.averaged(state.mealData.fiber)
+        }
+
+        private var displayedCalories: Decimal {
+            state.mealData.averaged(state.mealData.kcal)
+        }
+
+        private var savedMicronutrients: [(nutrient: MicroNutrient, amount: Decimal)] {
+            state.mealData.micronutrients
+                .filter { $0.value > 0 }
+                .sorted {
+                    MicronutrientProgress.progress(
+                        nutrient: $0.key,
+                        amount: NSDecimalNumber(decimal: $0.value).doubleValue,
+                        age: state.individual.age,
+                        sex: state.individual.sex
+                    ).percent
+                        >
+                        MicronutrientProgress.progress(
+                            nutrient: $1.key,
+                            amount: NSDecimalNumber(decimal: $1.value).doubleValue,
+                            age: state.individual.age,
+                            sex: state.individual.sex
+                        ).percent
+                }
+                .map { ($0.key, $0.value) }
+        }
+
+        /// Meal Summary Frame Height
+        private var frameHeight: CGFloat {
+            CGFloat(
+                200 +
+                    ((state.mealData.micronutrients.isEmpty && !otherMacros) ? 0 : 53) +
+                    (displayAllNutrients && state.mealData.micronutrients.isEmpty ? 43 : displayAllNutrients ? 64 : 0) +
+                    (displayAllNutrients ? 1 : 0) * nutrientsCount * 31
+            )
+        }
+
         private func enabled() -> Bool {
             guard let or = fetchedPercent.first, or.enabled else { return false }
-            guard let aisf = fetchedAISF.first else { return false }
+            guard let aisf = fetchedAISF.first(where: { $0.id == or.id }) else { return false }
             return aisf.autoisf
         }
 
         private func disabled() -> Bool {
             guard let or = fetchedPercent.first, or.enabled else { return false }
-            guard let aisf = fetchedAISF.first else { return false }
+            guard let aisf = fetchedAISF.first(where: { $0.id == or.id }) else { return false }
             return !aisf.autoisf
         }
 
@@ -889,7 +1222,11 @@ extension Home {
                         if let progress = state.bolusProgress, let amount = state.bolusAmount {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 15)
-                                    .fill(.gray.opacity(0.9))
+                                    .fill(
+                                        colorScheme == .light ? IAPSconfig
+                                            .homeViewBackgroundLight : IAPSconfig
+                                            .homeViewBackgrundDark
+                                    )
                                     .frame(maxWidth: 320, maxHeight: 90)
                                 bolusProgressView(progress: progress, amount: amount)
                             }
@@ -901,6 +1238,7 @@ extension Home {
                         switch scenePhase {
                         case .active:
                             state.startTimer()
+                            checkBuildExpiration()
                         case .background,
                              .inactive:
                             state.stopTimer()
@@ -914,6 +1252,20 @@ extension Home {
                 if onboarded.first?.firstRun ?? true {
                     state.fetchPreferences()
                 }
+                checkBuildExpiration()
+            }
+            .alert(
+                BuildExpirationManager.shared.alertTitle,
+                isPresented: $showExpirationAlert
+            ) {
+                Button("OK", role: .cancel) {}
+                Button("More Info") {
+                    if let url = URL(string: "https://github.com/Artificial-Pancreas/iAPS/releases") {
+                        UIApplication.shared.open(url)
+                    }
+                }
+            } message: {
+                Text(BuildExpirationManager.shared.alertMessage)
             }
             .navigationTitle("Home")
             .navigationBarHidden(true)
@@ -945,6 +1297,13 @@ extension Home {
                             }
                     )
             }
+        }
+
+        private func checkBuildExpiration() {
+            let manager = BuildExpirationManager.shared
+            guard manager.shouldShowAlert else { return }
+            manager.markAlertShown()
+            showExpirationAlert = true
         }
 
         private var popup: some View {

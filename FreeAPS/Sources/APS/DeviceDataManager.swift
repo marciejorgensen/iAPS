@@ -5,12 +5,9 @@ import Foundation
 import HealthKit
 import LoopKit
 import LoopKitUI
-@preconcurrency import MinimedKit
 import MockKit
-import OmniBLE
-import OmniKit
+import MockKitUI
 import os.log
-import ShareClient
 import SwiftDate
 import Swinject
 import UserNotifications
@@ -126,17 +123,22 @@ final class BaseDeviceDataManager: Injectable, DeviceDataManager {
 
     // MARK: - CGM
 
+    @PersistedProperty(key: "CGMManagerState") var rawCGMManager: CGMManager.RawValue?
+
     private(set) var cgmManager: CGMManager? {
         didSet {
             dispatchPrecondition(condition: .onQueue(.main))
             oldValue?.cgmManagerDelegate = nil
             oldValue?.delegateQueue = nil
             setupCGM()
-            UserDefaults.standard.cgmManagerRawValue = cgmManager?.rawValue
+            rawCGMManager = cgmManager?.rawValue
+            UserDefaults.standard.clearLegacyCGMManagerRawValue()
         }
     }
 
     // MARK: - Pump
+
+    @PersistedProperty(key: "PumpManagerState") var rawPumpManager: PumpManager.RawValue?
 
     private(set) var pumpManager: PumpManagerUI? {
         didSet {
@@ -150,20 +152,21 @@ final class BaseDeviceDataManager: Injectable, DeviceDataManager {
             }
 
             setupPump()
-            UserDefaults.standard.pumpManagerRawValue = pumpManager?.rawValue
+            rawPumpManager = pumpManager?.rawValue
+            UserDefaults.standard.clearLegacyPumpManagerRawValue()
         }
     }
 
     init(resolver: Resolver) {
         injectServices(resolver)
 
-        if let pumpManagerRawValue = UserDefaults.standard.pumpManagerRawValue {
+        if let pumpManagerRawValue = rawPumpManager ?? UserDefaults.standard.legacyPumpManagerRawValue {
             pumpManager = pumpManagerFromRawValue(pumpManagerRawValue)
         } else {
             pumpManager = nil
         }
 
-        if let cgmManagerRawValue = UserDefaults.standard.cgmManagerRawValue {
+        if let cgmManagerRawValue = rawCGMManager ?? UserDefaults.standard.legacyCgmManagerRawValue {
             cgmManager = cgmManagerFromRawValue(cgmManagerRawValue)
 
             // Handle case of PumpManager providing CGM
@@ -257,12 +260,25 @@ final class BaseDeviceDataManager: Injectable, DeviceDataManager {
         pluginManager.getPumpManagerTypeByIdentifier(identifier) ?? staticPumpManagersByIdentifier[identifier]
     }
 
-    private func pumpManagerTypeFromRawValue(_ rawValue: [String: Any]) -> PumpManager.Type? {
+    private func pumpManagerTypeFromRawValue(_ rawValue: [String: Any]) -> PumpManagerUI.Type? {
         guard let managerIdentifier = rawValue["managerIdentifier"] as? String else {
             return nil
         }
 
-        return pumpManagerTypeByIdentifier(managerIdentifier)
+        if let pumpManager = pumpManagerTypeByIdentifier(managerIdentifier) {
+            return pumpManager
+        }
+
+        // see: https://github.com/LoopKit/Loop/pull/2426/changes
+
+        /// The pumpManager was not found for managerIdentifier. If this was for an "Omnipod" (OmniKit) or
+        /// "Omnipod-DASH" (OmniBLE), have the universal "Omni" pumpManager (OmnipodKit) handle instead.
+        let OmniStr = "Omni"
+        if managerIdentifier.hasPrefix(OmniStr) {
+            return pumpManagerTypeByIdentifier(OmniStr)
+        }
+
+        return nil
     }
 
     func pumpManagerFromRawValue(_ rawValue: [String: Any]) -> PumpManagerUI? {
@@ -557,7 +573,7 @@ extension BaseDeviceDataManager: PumpManagerDelegate {
     }
 
     func pumpManagerDidUpdateState(_ pumpManager: PumpManager) {
-        UserDefaults.standard.pumpManagerRawValue = pumpManager.rawValue
+        rawPumpManager = pumpManager.rawValue
         if self.pumpManager == nil, let newPumpManager = pumpManager as? PumpManagerUI {
             self.pumpManager = newPumpManager
         }
@@ -664,14 +680,6 @@ extension BaseDeviceDataManager: PumpManagerDelegate {
         dispatchPrecondition(condition: .onQueue(processQueue))
         debug(.deviceManager, "New pump events:\n\(events.map(\.title).joined(separator: "\n"))")
 
-        // TODO: [loopkit] is this filtering still needed?
-        // filter buggy TBRs > maxBasal from MDT
-        let pumpMaxBasal = Double(settingsManager.pumpSettings.maxBasal)
-        let events = events.filter {
-            // type is optional...
-            guard let type = $0.type, type == .tempBasal else { return true }
-            return $0.dose?.unitsPerHour ?? 0 <= pumpMaxBasal
-        }
         pumpHistoryStorage.storePumpEvents(events)
         lastEventDate = events.last?.date
         completion(nil)
@@ -798,7 +806,7 @@ extension BaseDeviceDataManager: CGMManagerDelegate {
 
     func cgmManagerDidUpdateState(_ manager: CGMManager) {
         dispatchPrecondition(condition: .onQueue(processQueue))
-        UserDefaults.standard.cgmManagerRawValue = manager.rawValue
+        rawCGMManager = manager.rawValue
         appCoordinator.setShouldUploadGlucose(manager.shouldSyncToRemoteService)
     }
 

@@ -189,7 +189,8 @@ platform :ios do
     ])
     
     configure_bundle_id("FreeAPSWatch", "#{APP_IDENTIFIER}.watchkitapp", [
-      Spaceship::ConnectAPI::BundleIdCapability::Type::APP_GROUPS
+      Spaceship::ConnectAPI::BundleIdCapability::Type::APP_GROUPS,
+      Spaceship::ConnectAPI::BundleIdCapability::Type::HEALTHKIT
     ])
 
     configure_bundle_id("LiveActivityExtension", "#{APP_IDENTIFIER}.LiveActivity", [
@@ -211,6 +212,7 @@ platform :ios do
     
     match(
       type: "appstore",
+      readonly: false,
       force: false,
       verbose: true,
       git_basic_authorization: Base64.strict_encode64("#{GITHUB_REPOSITORY_OWNER}:#{GH_PAT}"),

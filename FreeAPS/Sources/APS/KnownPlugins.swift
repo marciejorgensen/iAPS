@@ -7,8 +7,7 @@ import MedtrumKit
 import MinimedKit
 import MockKit
 import NightscoutRemoteCGM
-import OmniBLE
-import OmniKit
+import OmnipodKit
 
 enum KnownPlugins {
     static func allowCalibrations(for cgmManager: CGMManager) -> Bool {
@@ -30,10 +29,17 @@ enum KnownPlugins {
         return switch cgmManager.pluginIdentifier {
         case G6CGMManager.pluginIdentifier: 10 * secondsOfDay
         case G7CGMManager.pluginIdentifier: 10.5 * secondsOfDay
-        case LibreTransmitterManagerV3.pluginIdentifier: 14.5 * secondsOfDay
+        case LibreTransmitterManagerV3.pluginIdentifier: libreExpirationSeconds
         case MinimedPumpManager.pluginIdentifier: 6 * secondsOfDay
         default: nil
         }
+    }
+
+    static var libreExpirationSeconds: TimeInterval? {
+        guard let maxAge = UserDefaults.standard.preSelectedSensor?.maxAge, maxAge > 0 else {
+            return nil
+        }
+        return TimeInterval(maxAge * 60) // Convert minutes to seconds
     }
 
     static func sessionStart(cgmManager: CGMManager) -> Date? {
@@ -85,67 +91,35 @@ enum KnownPlugins {
     }
 
     static func isManualTempBasalActive(_ pumpManager: PumpManager) -> Bool? {
-        switch pumpManager.pluginIdentifier {
-        case OmnipodPumpManager.pluginIdentifier:
-            if let omnipod = pumpManager as? OmnipodPumpManager,
-               let tempBasal = omnipod.state.podState?.unfinalizedTempBasal,
-               !tempBasal.isFinished(),
-               !tempBasal.automatic
-            {
-                return true
-            } else {
-                return false
-            }
-        case OmniBLEPumpManager.pluginIdentifier:
-            if let omnipodBLE = pumpManager as? OmniBLEPumpManager,
-               let tempBasal = omnipodBLE.state.podState?.unfinalizedTempBasal,
-               !tempBasal.isFinished(),
-               !tempBasal.automatic
-            {
-                return true
-            } else {
-                return false
-            }
-        default: return nil
-        }
+        guard case let .tempBasal(dose) = pumpManager.status.basalDeliveryState else { return false }
+        return !(dose.automatic ?? true)
     }
 
     static func pumpActivationDate(_ pumpManager: PumpManager) -> Date? {
         switch pumpManager.pluginIdentifier {
-        case OmnipodPumpManager.pluginIdentifier:
-            return (pumpManager as? OmnipodPumpManager)?.state.podState?.activatedAt
-        case OmniBLEPumpManager.pluginIdentifier:
-            return (pumpManager as? OmniBLEPumpManager)?.state.podState?.activatedAt
         case MedtrumPumpManager.pluginIdentifier:
             return (pumpManager as? MedtrumPumpManager)?.state.patchActivatedAt
+        case OmniPumpManager.pluginIdentifier:
+            return (pumpManager as? OmniPumpManager)?.state.podState?.activatedAt
         default: return nil
         }
     }
 
     static func pumpExpirationDate(_ pumpManager: PumpManager) -> Date? {
         switch pumpManager.pluginIdentifier {
-        case OmnipodPumpManager.pluginIdentifier:
-            return (pumpManager as? OmnipodPumpManager)?.state.podState?.expiresAt
-        case OmniBLEPumpManager.pluginIdentifier:
-            return (pumpManager as? OmniBLEPumpManager)?.state.podState?.expiresAt
         case MedtrumPumpManager.pluginIdentifier:
             return (pumpManager as? MedtrumPumpManager)?.state.patchExpiresAt
+        case OmniPumpManager.pluginIdentifier:
+            return (pumpManager as? OmniPumpManager)?.state.podState?.expiresAt
         default: return nil
         }
     }
 
     static func pumpReservoir(_ pumpManager: PumpManager) -> Decimal? {
         switch pumpManager.pluginIdentifier {
-        case OmnipodPumpManager.pluginIdentifier:
-            let reservoirVal = (pumpManager as? OmnipodPumpManager)?.state.podState?.lastInsulinMeasurements?
+        case OmniPumpManager.pluginIdentifier:
+            let reservoirVal = (pumpManager as? OmniPumpManager)?.state.podState?.lastInsulinMeasurements?
                 .reservoirLevel ?? 0xDEAD_BEEF
-            // TODO: find the value Pod.maximumReservoirReading
-            let reservoir = Decimal(reservoirVal) > 50.0 ? 0xDEAD_BEEF : reservoirVal
-            return Decimal(reservoir)
-        case OmniBLEPumpManager.pluginIdentifier:
-            let reservoirVal = (pumpManager as? OmniBLEPumpManager)?.state.podState?.lastInsulinMeasurements?
-                .reservoirLevel ?? 0xDEAD_BEEF
-            // TODO: find the value Pod.maximumReservoirReading
             let reservoir = Decimal(reservoirVal) > 50.0 ? 0xDEAD_BEEF : reservoirVal
             return Decimal(reservoir)
         case MedtrumPumpManager.pluginIdentifier:

@@ -34,11 +34,19 @@ struct FreeAPSSettings: JSON, Equatable {
     var high: Decimal = 145
     var low: Decimal = 70
     var uploadStats: Bool = false
+    var uploadLogs: Bool = false
     var hours: Int = 6
     var xGridLines: Bool = true
     var yGridLines: Bool = true
+    var yGridLabels: Bool = true
     var oneDimensionalGraph: Bool = false
     var rulerMarks: Bool = false
+    var inRangeAreaFill: Bool = false
+    var secondaryChartBackdrop: Bool = true
+    var insulinActivityGridLines: Bool = true
+    var insulinActivityLabels: Bool = true
+    var chartGlucosePeaks: Bool = false
+    var showPredictionsLegend: Bool = true
     var maxCarbs: Decimal = 1000
     var displayFatAndProteinOnWatch: Bool = false
     var confirmBolusFaster: Bool = false
@@ -51,6 +59,10 @@ struct FreeAPSSettings: JSON, Equatable {
     var useLiveActivity: Bool = false
     var liveActivityChart = false
     var liveActivityChartShowPredictions = true
+    var liveActivityWatchChart: Bool = false
+    var liveActivityWatchPredictions: Bool = true
+    var liveActivityWatchDelta: Bool = true
+    var liveActivityWatchEventual: Bool = true
     var useTargetButton: Bool = false
     var alwaysUseColors: Bool = false
     var timeSettings: Bool = true
@@ -74,8 +86,8 @@ struct FreeAPSSettings: JSON, Equatable {
     var profilesOrTempTargets: Bool = false
     var allowBolusShortcut: Bool = false
     var allowedRemoteBolusAmount: Decimal = 0.0
-    var eventualBG: Bool = true
-    var minumimPrediction: Bool = true
+    var eventualBG: Bool = false
+    var minumimPrediction: Bool = false
     var minimumSMB: Decimal = 0.3
     var useInsulinBars: Bool = false
     var skipGlucoseChart: Bool = false
@@ -105,6 +117,7 @@ struct FreeAPSSettings: JSON, Equatable {
     var lightMode: LightMode = .auto
     // Auto ISF
     var autoisf: Bool = false
+    var autocr: Bool = false
     var smbDeliveryRatioBGrange: Decimal = 0
     var smbDeliveryRatioMin: Decimal = 0.5
     var smbDeliveryRatioMax: Decimal = 0.5
@@ -136,6 +149,26 @@ struct FreeAPSSettings: JSON, Equatable {
     // 1-min loops
     var allowOneMinuteLoop: Bool = false // allow running loops every minute
     var allowOneMinuteGlucose: Bool = false // allow sending 1-minute readings to oref, even if loops are with 5-minute intervals
+    var ai: Bool = true
+    var mealViewMicronutrients: Bool = false
+    var nightTime = NightTimeConfiguration.default
+    var autoisfEffective: Bool {
+        autoisf && !isNighttime
+    }
+
+    var isNighttime: Bool {
+        guard nightTime.enabled else { return false }
+
+        let calendar = Calendar.current.dateComponents([.hour, .minute], from: .now)
+        guard let h = calendar.hour, let m = calendar.minute else { return false }
+
+        let now = h * 60 + m
+        let start = nightTime.startHour * 60 + nightTime.startMinute
+        let end = nightTime.endHour * 60 + nightTime.endMinute
+
+        return (start > end && (now >= start || now < end)) ||
+            (start <= end && now >= start && now < end)
+    }
 }
 
 extension FreeAPSSettings: Decodable {
@@ -373,12 +406,40 @@ extension FreeAPSSettings: Decodable {
             settings.yGridLines = yGridLines
         }
 
+        if let yGridLabels = try? container.decode(Bool.self, forKey: .yGridLabels) {
+            settings.yGridLabels = yGridLabels
+        }
+
         if let oneDimensionalGraph = try? container.decode(Bool.self, forKey: .oneDimensionalGraph) {
             settings.oneDimensionalGraph = oneDimensionalGraph
         }
 
         if let rulerMarks = try? container.decode(Bool.self, forKey: .rulerMarks) {
             settings.rulerMarks = rulerMarks
+        }
+
+        if let inRangeAreaFill = try? container.decode(Bool.self, forKey: .inRangeAreaFill) {
+            settings.inRangeAreaFill = inRangeAreaFill
+        }
+
+        if let secondaryChartBackdrop = try? container.decode(Bool.self, forKey: .secondaryChartBackdrop) {
+            settings.secondaryChartBackdrop = secondaryChartBackdrop
+        }
+
+        if let insulinActivityGridLines = try? container.decode(Bool.self, forKey: .insulinActivityGridLines) {
+            settings.insulinActivityGridLines = insulinActivityGridLines
+        }
+
+        if let insulinActivityLabels = try? container.decode(Bool.self, forKey: .insulinActivityLabels) {
+            settings.insulinActivityLabels = insulinActivityLabels
+        }
+
+        if let chartGlucosePeaks = try? container.decode(Bool.self, forKey: .chartGlucosePeaks) {
+            settings.chartGlucosePeaks = chartGlucosePeaks
+        }
+
+        if let showPredictionsLegend = try? container.decode(Bool.self, forKey: .showPredictionsLegend) {
+            settings.showPredictionsLegend = showPredictionsLegend
         }
 
         if let overrideHbA1cUnit = try? container.decode(Bool.self, forKey: .overrideHbA1cUnit) {
@@ -417,6 +478,22 @@ extension FreeAPSSettings: Decodable {
 
         if let liveActivityChartShowPredictions = try? container.decode(Bool.self, forKey: .liveActivityChartShowPredictions) {
             settings.liveActivityChartShowPredictions = liveActivityChartShowPredictions
+        }
+
+        if let liveActivityWatchChart = try? container.decode(Bool.self, forKey: .liveActivityWatchChart) {
+            settings.liveActivityWatchChart = liveActivityWatchChart
+        }
+
+        if let liveActivityWatchPredictions = try? container.decode(Bool.self, forKey: .liveActivityWatchPredictions) {
+            settings.liveActivityWatchPredictions = liveActivityWatchPredictions
+        }
+
+        if let liveActivityWatchDelta = try? container.decode(Bool.self, forKey: .liveActivityWatchDelta) {
+            settings.liveActivityWatchDelta = liveActivityWatchDelta
+        }
+
+        if let liveActivityWatchEventual = try? container.decode(Bool.self, forKey: .liveActivityWatchEventual) {
+            settings.liveActivityWatchEventual = liveActivityWatchEventual
         }
 
         // ----
@@ -531,6 +608,10 @@ extension FreeAPSSettings: Decodable {
         // AutoISF
         if let autoisf = try? container.decode(Bool.self, forKey: .autoisf) {
             settings.autoisf = autoisf
+        }
+
+        if let autocr = try? container.decode(Bool.self, forKey: .autocr) {
+            settings.autocr = autocr
         }
 
         if let enableBGacceleration = try? container.decode(Bool.self, forKey: .enableBGacceleration) {
@@ -662,6 +743,22 @@ extension FreeAPSSettings: Decodable {
         }
         if let allowOneMinuteGlucose = try? container.decode(Bool.self, forKey: .allowOneMinuteGlucose) {
             settings.allowOneMinuteGlucose = allowOneMinuteGlucose
+        }
+
+        if let ai = try? container.decode(Bool.self, forKey: .ai) {
+            settings.ai = ai
+        }
+
+        if let mealViewMicronutrients = try? container.decode(Bool.self, forKey: .mealViewMicronutrients) {
+            settings.mealViewMicronutrients = mealViewMicronutrients
+        }
+
+        if let uploadLogs = try? container.decode(Bool.self, forKey: .uploadLogs) {
+            settings.uploadLogs = uploadLogs
+        }
+
+        if let nightTime = try? container.decode(NightTimeConfiguration.self, forKey: .nightTime) {
+            settings.nightTime = nightTime
         }
 
         self = settings
